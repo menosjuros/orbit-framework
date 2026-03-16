@@ -15,7 +15,7 @@ The git log should read like a changelog of what shipped, not a diary of plannin
 | Event                   | Commit? | Why                                              |
 | ----------------------- | ------- | ------------------------------------------------ |
 | PROJECT + ROADMAP init  | YES     | Project initialization                           |
-| PLAN.md created         | NO      | Intermediate - commit with plan completion       |
+| REFINE.md created         | NO      | Intermediate - commit with plan completion       |
 | Research notes          | NO      | Intermediate                                     |
 | **Task completed**      | YES     | Atomic unit of work (1 commit per task)          |
 | **Plan completed**      | YES     | Metadata commit (SUMMARY + STATE + ROADMAP)      |
@@ -98,7 +98,7 @@ AC Results:
 - AC-1: [PASS/FAIL]
 - AC-2: [PASS/FAIL]
 
-SUMMARY: .orbit/phases/XX-name/{phase}-{plan}-SUMMARY.md
+SUMMARY: .orbit/phases/XX-name/{phase}-{plan}-INTEGRATE.md
 ```
 
 What to commit:
@@ -163,7 +163,7 @@ Each plan produces 2-4 commits (tasks + metadata). Clear, granular, bisectable.
 <anti_patterns>
 
 **Still don't commit (intermediate artifacts):**
-- PLAN.md creation (commit with plan completion)
+- REFINE.md creation (commit with plan completion)
 - Research notes
 - Minor planning tweaks
 - "Fixed typo in roadmap"
@@ -186,7 +186,7 @@ Each plan produces 2-4 commits (tasks + metadata). Clear, granular, bisectable.
 - Git history becomes primary context source for future Claude sessions
 - `git log --grep="{phase}-{plan}"` shows all work for a plan
 - `git diff <hash>^..<hash>` shows exact changes per task
-- Less reliance on parsing SUMMARY.md = more context for actual work
+- Less reliance on parsing INTEGRATE.md = more context for actual work
 
 **Failure recovery:**
 - Task 1 committed ✅, Task 2 failed ❌

@@ -75,7 +75,7 @@ For mode-dependent behavior:
 </if>
 ```
 
-Conditions reference PLAN.md frontmatter or config values.
+Conditions reference REFINE.md frontmatter or config values.
 
 ## Key Principle
 
@@ -91,14 +91,14 @@ Execute an approved PLAN by running tasks in order, verifying each, and recordin
 </purpose>
 
 <when_to_use>
-- User has approved a PLAN.md
+- User has approved a REFINE.md
 - STATE.md shows loop position at PLAN (ready for BUILD)
 - No blocking checkpoints remain unresolved
 </when_to_use>
 
 <required_reading>
 @.orbit/STATE.md
-@.orbit/phases/{phase}/{plan}-PLAN.md
+@.orbit/phases/{phase}/{plan}-REFINE.md
 </required_reading>
 
 <loop_context>
@@ -111,7 +111,7 @@ Next phase:  INTEGRATE (after execution completes)
 
 <step name="validate_preconditions" priority="first">
   1. Read STATE.md, confirm loop position
-  2. Read PLAN.md, confirm autonomous flag
+  2. Read REFINE.md, confirm autonomous flag
   3. If autonomous=false and checkpoints exist, warn user
 </step>
 

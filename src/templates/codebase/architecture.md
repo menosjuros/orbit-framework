@@ -176,7 +176,7 @@ Template for `.orbit/codebase/ARCHITECTURE.md` - captures conceptual code organi
 
 **Template:**
 - Purpose: Reusable document structures
-- Examples: PROJECT.md, PLAN.md templates
+- Examples: PROJECT.md, REFINE.md templates
 - Pattern: Markdown files with substitution variables
 
 ## Entry Points

@@ -19,7 +19,7 @@ After completion, project is ready for /orbit:discuss-milestone or /orbit:milest
 @.orbit/STATE.md
 @.orbit/PROJECT.md
 @.orbit/ROADMAP.md
-@.orbit/phases/{milestone-phases}/*-SUMMARY.md
+@.orbit/phases/{milestone-phases}/*-INTEGRATE.md
 </required_reading>
 
 <references>
@@ -64,15 +64,15 @@ After completion, project is ready for /orbit:discuss-milestone or /orbit:milest
 Calculate milestone statistics:
 
 1. **Duration:**
-   - Read first SUMMARY.md `started:` timestamp
-   - Read last SUMMARY.md `completed:` timestamp
+   - Read first INTEGRATE.md `started:` timestamp
+   - Read last INTEGRATE.md `completed:` timestamp
    - Calculate elapsed time
 
 2. **Files:**
-   - Count unique files in all SUMMARY.md `key-files.created` + `key-files.modified`
+   - Count unique files in all INTEGRATE.md `key-files.created` + `key-files.modified`
 
 3. **Plans:**
-   - Count SUMMARY.md files across all phases
+   - Count INTEGRATE.md files across all phases
 
 4. **Phases:**
    - Count phase directories in milestone
@@ -87,7 +87,7 @@ phases: N
 </step>
 
 <step name="extract_accomplishments">
-Read all SUMMARY.md files from milestone phases:
+Read all INTEGRATE.md files from milestone phases:
 
 1. Collect all "Accomplishments" sections
 2. Deduplicate similar items
@@ -134,7 +134,7 @@ Completed milestone log for this project.
 
 ### Key Decisions
 
-{decisions from SUMMARY.md files}
+{decisions from INTEGRATE.md files}
 
 ---
 
@@ -451,7 +451,7 @@ Or /orbit:milestone to create milestone directly.
 - Create it with header template
 - Proceed with entry creation
 
-**No SUMMARY.md files found:**
+**No INTEGRATE.md files found:**
 - Warn: "No summaries found for milestone phases"
 - Offer to proceed anyway or investigate
 

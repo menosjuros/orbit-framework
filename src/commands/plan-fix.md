@@ -138,7 +138,7 @@ Priority: {blocker count} blocker, {major count} major, {minor count} minor, {co
 @.orbit/phases/XX-name/{plan}-UAT.md
 
 **Original plan for reference:**
-@.orbit/phases/XX-name/{plan}-PLAN.md
+@.orbit/phases/XX-name/{plan}-REFINE.md
 </context>
 
 <acceptance_criteria>
@@ -173,7 +173,7 @@ Before declaring plan complete:
 </success_criteria>
 
 <output>
-After completion, create `.orbit/phases/XX-name/{plan}-FIX-SUMMARY.md`
+After completion, create `.orbit/phases/XX-name/{plan}-FIX-INTEGRATE.md`
 </output>
 ```
 </step>

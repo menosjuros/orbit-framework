@@ -1,5 +1,5 @@
 <purpose>
-Execute discovery at appropriate depth to inform planning decisions. Produces DISCOVERY.md with findings, recommendation, and confidence level.
+Execute discovery at appropriate depth to inform planning decisions. Produces OBSERVE.md with findings, recommendation, and confidence level.
 
 Distinct from research workflow: Research gathers information. Discovery makes technical decisions.
 </purpose>
@@ -16,8 +16,8 @@ Distinct from research workflow: Research gathers information. Discovery makes t
 | Level | Name | Time | Output | When |
 |-------|------|------|--------|------|
 | 1 | Quick | 2-5 min | Verbal confirmation | Confirming known approach |
-| 2 | Standard | 15-30 min | DISCOVERY.md | Choosing between options |
-| 3 | Deep | 1+ hour | Detailed DISCOVERY.md | Novel problems, high-risk |
+| 2 | Standard | 15-30 min | OBSERVE.md | Choosing between options |
+| 3 | Deep | 1+ hour | Detailed OBSERVE.md | Novel problems, high-risk |
 
 </depth_levels>
 
@@ -54,7 +54,7 @@ For: Confirming known approach still valid.
    - API unchanged from expectations
    - No critical issues
 
-3. **If verified:** Proceed to planning. No DISCOVERY.md needed.
+3. **If verified:** Proceed to planning. No OBSERVE.md needed.
 4. **If concerns:** Escalate to Level 2.
 
 Output: Verbal confirmation to proceed.
@@ -87,13 +87,13 @@ For: Choosing between options, new integration.
    - Check source currency
    - Assign confidence
 
-5. **Create DISCOVERY.md:**
-   Use template: @src/templates/DISCOVERY.md
+5. **Create OBSERVE.md:**
+   Use template: @src/templates/OBSERVE.md
    - Summary with recommendation
    - Findings per option
    - Confidence level (should be MEDIUM-HIGH)
 
-Output: `.orbit/phases/XX-name/DISCOVERY.md`
+Output: `.orbit/phases/XX-name/OBSERVE.md`
 </step>
 
 <step name="level_3_deep">
@@ -123,7 +123,7 @@ For: Architectural decisions, novel problems.
    - Mark verified vs assumed
    - Flag contradictions
 
-5. **Create comprehensive DISCOVERY.md:**
+5. **Create comprehensive OBSERVE.md:**
    - Full template structure
    - Quality report with sources
    - Confidence per finding
@@ -140,7 +140,7 @@ For: Architectural decisions, novel problems.
    3. Pause (need to think)
    ```
 
-Output: Comprehensive `.orbit/phases/XX-name/DISCOVERY.md`
+Output: Comprehensive `.orbit/phases/XX-name/OBSERVE.md`
 </step>
 
 <step name="route_to_planning">
@@ -157,7 +157,7 @@ Confidence: [HIGH/MEDIUM/LOW]
 
 Recommendation: [one-liner]
 
-Output: [path to DISCOVERY.md or "verbal confirmation"]
+Output: [path to OBSERVE.md or "verbal confirmation"]
 
 ────────────────────────────────────────
 ▶ NEXT: /orbit:refine [phase]
@@ -175,13 +175,13 @@ Output: [path to DISCOVERY.md or "verbal confirmation"]
 **Level 2:**
 - [ ] Options researched
 - [ ] Comparison made
-- [ ] DISCOVERY.md created
+- [ ] OBSERVE.md created
 - [ ] Confidence MEDIUM+
 
 **Level 3:**
 - [ ] Scope defined
 - [ ] Exhaustive research
 - [ ] All findings cross-verified
-- [ ] DISCOVERY.md created
+- [ ] OBSERVE.md created
 - [ ] Confidence gate passed
 </success_criteria>

@@ -74,7 +74,7 @@ Usage: `/orbit:init`
 Enter REFINE phase - create an executable plan.
 
 - Reads current state from STATE.md
-- Creates PLAN.md with tasks, acceptance criteria, boundaries
+- Creates REFINE.md with tasks, acceptance criteria, boundaries
 - Populates skills section from SPECIAL-FLOWS.md (if configured)
 - Updates loop position
 
@@ -84,7 +84,7 @@ Usage: `/orbit:refine 3` (specific phase)
 ---
 
 ### `/orbit:build [plan-path]`
-Execute an approved PLAN.md file.
+Execute an approved REFINE.md file.
 
 - **Blocks if required skills not loaded** (from SPECIAL-FLOWS.md)
 - Validates plan exists and hasn't been executed
@@ -93,21 +93,21 @@ Execute an approved PLAN.md file.
 - Reports completion and prompts for INTEGRATE
 
 Usage: `/orbit:build`
-Usage: `/orbit:build .orbit/phases/01-foundation/01-01-PLAN.md`
+Usage: `/orbit:build .orbit/phases/01-foundation/01-01-REFINE.md`
 
 ---
 
 ### `/orbit:integrate [plan-path]`
 Reconcile plan vs actual and close the loop.
 
-- Creates SUMMARY.md documenting what was built
+- Creates INTEGRATE.md documenting what was built
 - Audits skill invocations (if SPECIAL-FLOWS.md configured)
 - Records decisions made, deferred issues
 - Updates STATE.md with loop closure
 - **Required** - never skip this step
 
 Usage: `/orbit:integrate`
-Usage: `/orbit:integrate .orbit/phases/01-foundation/01-01-PLAN.md`
+Usage: `/orbit:integrate .orbit/phases/01-foundation/01-01-REFINE.md`
 
 ---
 
@@ -351,7 +351,7 @@ Usage: `/orbit:map-codebase`
 ### `/orbit:test`
 Guide manual user acceptance testing of recently built features.
 
-- Generates verification checklist from SUMMARY.md
+- Generates verification checklist from INTEGRATE.md
 - Guides through manual testing
 - Records verification results
 
@@ -382,14 +382,14 @@ Usage: `/orbit:plan-fix`
 ├── MILESTONES.md        # Completed milestone archive
 └── phases/
     ├── 01-foundation/
-    │   ├── 01-01-PLAN.md
-    │   └── 01-01-SUMMARY.md
+    │   ├── 01-01-REFINE.md
+    │   └── 01-01-INTEGRATE.md
     └── 02-features/
-        ├── 02-01-PLAN.md
-        └── 02-01-SUMMARY.md
+        ├── 02-01-REFINE.md
+        └── 02-01-INTEGRATE.md
 ```
 
-## PLAN.md Structure
+## REFINE.md Structure
 
 ```markdown
 ---

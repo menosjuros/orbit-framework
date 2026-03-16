@@ -6,31 +6,31 @@ allowed-tools: [Read, Write, AskUserQuestion]
 ---
 
 <objective>
-Reconcile plan versus actual results, create SUMMARY.md, and close the loop.
+Reconcile plan versus actual results, create INTEGRATE.md, and close the loop.
 
 **When to use:** After BUILD phase complete. This is MANDATORY - never skip INTEGRATE.
 
-Creates SUMMARY.md documenting what was built, decisions made, and any deferred issues.
+Creates INTEGRATE.md documenting what was built, decisions made, and any deferred issues.
 </objective>
 
 <execution_context>
 @~/.claude/orbit-framework/workflows/unify-phase.md
-@~/.claude/orbit-framework/templates/SUMMARY.md
+@~/.claude/orbit-framework/templates/INTEGRATE.md
 </execution_context>
 
 <context>
 Plan path: $ARGUMENTS
 
 @.orbit/STATE.md
-@{plan-path} (the PLAN.md being unified)
+@{plan-path} (the REFINE.md being unified)
 </context>
 
 <process>
 
 <step name="validate_preconditions">
-1. Confirm PLAN.md exists at $ARGUMENTS path
+1. Confirm REFINE.md exists at $ARGUMENTS path
 2. Confirm BUILD phase was executed (tasks completed)
-3. If SUMMARY.md already exists: "Loop already closed. SUMMARY: {path}"
+3. If INTEGRATE.md already exists: "Loop already closed. SUMMARY: {path}"
 </step>
 
 <step name="reconcile">
@@ -44,7 +44,7 @@ Compare plan to actual:
 </step>
 
 <step name="create_summary">
-Create SUMMARY.md in same directory as PLAN.md:
+Create INTEGRATE.md in same directory as REFINE.md:
 - Document what was built
 - Record acceptance criteria results
 - Note any deferred issues
@@ -81,7 +81,7 @@ Next: [phase complete message or next plan]
 </process>
 
 <success_criteria>
-- [ ] SUMMARY.md created
+- [ ] INTEGRATE.md created
 - [ ] STATE.md updated with loop closure
 - [ ] User knows next action
 </success_criteria>

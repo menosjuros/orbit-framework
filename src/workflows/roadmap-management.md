@@ -313,7 +313,7 @@ STATE.md updated ✓
 - Phase must exist
 - Phase must be "Not started"
 - Cannot remove last phase in milestone
-- Cannot remove phase with artifacts (PLAN.md, SUMMARY.md)
+- Cannot remove phase with artifacts (REFINE.md, INTEGRATE.md)
 </validation_rules>
 
 <error_handling>

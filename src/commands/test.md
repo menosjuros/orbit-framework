@@ -15,7 +15,7 @@ Guide the user through manual acceptance testing of recently built features.
 
 <execution_context>
 @~/.claude/orbit-framework/workflows/verify-work.md
-@~/.claude/orbit-framework/templates/UAT-ISSUES.md
+@~/.claude/orbit-framework/templates/TEST.md
 </execution_context>
 
 <context>
@@ -32,7 +32,7 @@ Scope: $ARGUMENTS (optional)
 
 The workflow implements:
 1. Identify test scope (specified or most recent SUMMARY)
-2. Extract testable deliverables from SUMMARY.md
+2. Extract testable deliverables from INTEGRATE.md
 3. Generate test checklist based on acceptance criteria
 4. Guide user through each test via AskUserQuestion
 5. Collect and categorize any issues found
@@ -42,7 +42,7 @@ The workflow implements:
 </process>
 
 <success_criteria>
-- [ ] Test scope identified from SUMMARY.md
+- [ ] Test scope identified from INTEGRATE.md
 - [ ] Checklist generated based on deliverables
 - [ ] User guided through each test
 - [ ] All test results captured (pass/fail/partial/skip)

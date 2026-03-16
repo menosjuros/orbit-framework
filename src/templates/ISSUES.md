@@ -87,7 +87,7 @@ Enhancements discovered during execution. Not critical - address in future phase
 
 1. During BUILD, notice enhancement opportunity
 2. Log to `.orbit/ISSUES.md` with ISS-NNN format
-3. Note in SUMMARY.md: "Logged ISS-003 for future consideration"
+3. Note in INTEGRATE.md: "Logged ISS-003 for future consideration"
 4. Continue with current plan
 5. Review ISSUES.md during phase planning
 6. Address issues in appropriate future phase

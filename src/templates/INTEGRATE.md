@@ -1,6 +1,6 @@
-# SUMMARY.md Template
+# INTEGRATE.md Template
 
-Template for `.orbit/phases/{phase-number}-{name}/{phase}-{plan}-SUMMARY.md` — plan completion documentation.
+Template for `.orbit/phases/{phase-number}-{name}/{phase}-{plan}-INTEGRATE.md` — plan completion documentation.
 
 **Purpose:** Document what was built, decisions made, deviations from plan, and readiness for next phase.
 
@@ -197,7 +197,7 @@ Or: "None"
 The one-liner should tell someone what actually shipped.
 
 ### Acceptance Criteria Results
-**Purpose:** Verify all AC from PLAN.md were met.
+**Purpose:** Verify all AC from REFINE.md were met.
 **Contains:** Each AC with pass/fail status and notes.
 **Requirement:** All must pass for plan to be complete.
 

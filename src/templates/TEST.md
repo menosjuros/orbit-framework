@@ -4,7 +4,7 @@ Template for `.orbit/phases/XX-name/{phase}-{plan}-UAT.md` — issues discovered
 
 **Purpose:** Capture problems found during verify-work workflow. Unlike global ISSUES.md (for deferred enhancements), this file tracks bugs and problems in specific delivered work.
 
-**Location:** Same directory as the SUMMARY.md being tested.
+**Location:** Same directory as the INTEGRATE.md being tested.
 
 ---
 
@@ -14,7 +14,7 @@ Template for `.orbit/phases/XX-name/{phase}-{plan}-UAT.md` — issues discovered
 # UAT Issues: Phase [X] Plan [Y]
 
 **Tested:** [date]
-**Source:** [path to SUMMARY.md that was tested]
+**Source:** [path to INTEGRATE.md that was tested]
 **Tester:** User via verify-work workflow
 
 ## Open Issues
@@ -76,7 +76,7 @@ Template for `.orbit/phases/XX-name/{phase}-{plan}-UAT.md` — issues discovered
 # UAT Issues: Phase 5 Plan 2
 
 **Tested:** 2026-01-15
-**Source:** .orbit/phases/05-auth/05-02-SUMMARY.md
+**Source:** .orbit/phases/05-auth/05-02-INTEGRATE.md
 **Tester:** User via verify-work workflow
 
 ## Open Issues
@@ -121,7 +121,7 @@ Template for `.orbit/phases/XX-name/{phase}-{plan}-UAT.md` — issues discovered
 
 ## Workflow
 
-1. **verify-work workflow** runs against a SUMMARY.md
+1. **verify-work workflow** runs against a INTEGRATE.md
 2. User tests each feature from the plan's AC
 3. Issues found → create/update {phase}-{plan}-UAT.md
 4. If blockers exist → create FIX plan immediately
@@ -136,4 +136,4 @@ Template for `.orbit/phases/XX-name/{phase}-{plan}-UAT.md` — issues discovered
 | File | Purpose | Content | Timing |
 |------|---------|---------|--------|
 | **ISSUES.md** | Deferred enhancements | Nice-to-haves discovered during BUILD | During development |
-| **UAT-ISSUES.md** | Testing problems | Bugs found during verification | During UAT |
+| **TEST.md** | Testing problems | Bugs found during verification | During UAT |

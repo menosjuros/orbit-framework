@@ -20,7 +20,7 @@ Where GSD focuses on *getting work done*, ORBIT focuses on *getting work done co
 
 **ORBIT:** PLAN → APPLY → UNIFY (enforced)
 
-The UNIFY phase isn't optional. Every plan produces a SUMMARY.md that captures:
+The UNIFY phase isn't optional. Every plan produces a INTEGRATE.md that captures:
 - What actually happened vs. what was planned
 - Decisions made during execution
 - Issues deferred for later
@@ -80,7 +80,7 @@ ORBIT handoffs are designed for zero-context resumption. They capture not just *
 
 **ORBIT:** Tasks link to numbered acceptance criteria (AC-1, AC-2, AC-3) with Given/When/Then format.
 
-Every PLAN.md includes explicit acceptance criteria. Every SUMMARY.md reports pass/fail against those criteria. This creates verifiable quality gates, not just completion checkboxes.
+Every REFINE.md includes explicit acceptance criteria. Every INTEGRATE.md reports pass/fail against those criteria. This creates verifiable quality gates, not just completion checkboxes.
 
 *Why it matters:* "Done" is ambiguous. "AC-3: PASS" is not.
 
@@ -90,7 +90,7 @@ Every PLAN.md includes explicit acceptance criteria. Every SUMMARY.md reports pa
 
 **GSD:** Scope guidance in plans.
 
-**ORBIT:** Explicit `## Boundaries` section in every PLAN.md with DO NOT CHANGE declarations.
+**ORBIT:** Explicit `## Boundaries` section in every REFINE.md with DO NOT CHANGE declarations.
 
 When you specify boundaries, ORBIT treats them as hard constraints, not suggestions. Modifications to protected items require explicit confirmation.
 

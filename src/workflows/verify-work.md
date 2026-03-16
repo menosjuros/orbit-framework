@@ -1,11 +1,11 @@
 <purpose>
-Guide manual user acceptance testing of recently built features. Extract deliverables from SUMMARY.md, generate test checklist, guide user through each test, log issues to phase-scoped file.
+Guide manual user acceptance testing of recently built features. Extract deliverables from INTEGRATE.md, generate test checklist, guide user through each test, log issues to phase-scoped file.
 
 The USER performs all testing — Claude generates the checklist, guides the process, and captures issues.
 </purpose>
 
 <template>
-@src/templates/UAT-ISSUES.md
+@src/templates/TEST.md
 </template>
 
 <process>
@@ -15,16 +15,16 @@ The USER performs all testing — Claude generates the checklist, guides the pro
 
 If $ARGUMENTS provided:
 - Parse as phase number (e.g., "4") or plan number (e.g., "04-02")
-- Find corresponding SUMMARY.md file(s)
+- Find corresponding INTEGRATE.md file(s)
 
 If no arguments:
-- Find most recently modified SUMMARY.md
+- Find most recently modified INTEGRATE.md
 
 ```bash
-find .orbit/phases -name "*SUMMARY.md" -type f -exec ls -lt {} + | head -5
+find .orbit/phases -name "*INTEGRATE.md" -type f -exec ls -lt {} + | head -5
 ```
 
-Read the SUMMARY.md to understand what was built.
+Read the INTEGRATE.md to understand what was built.
 
 Key extraction points:
 - Acceptance Criteria results
@@ -33,7 +33,7 @@ Key extraction points:
 </step>
 
 <step name="extract">
-**Extract testable deliverables from SUMMARY.md:**
+**Extract testable deliverables from INTEGRATE.md:**
 
 Parse for:
 1. **Acceptance Criteria** - Each AC becomes a test item
@@ -55,8 +55,8 @@ Create structured test plan:
 ```
 # User Acceptance Test: [Plan Name]
 
-**Scope:** [What was built - from SUMMARY.md]
-**Source:** [path to SUMMARY.md]
+**Scope:** [What was built - from INTEGRATE.md]
+**Source:** [path to INTEGRATE.md]
 **Testing:** Manual user validation
 
 ## Pre-flight
@@ -132,7 +132,7 @@ For each failed/partial test, gather:
 If any issues found:
 
 1. Create `.orbit/phases/XX-name/{phase}-{plan}-UAT.md` if doesn't exist
-2. Use template from `@src/templates/UAT-ISSUES.md`
+2. Use template from `@src/templates/TEST.md`
 3. Add each issue with UAT-NNN format:
 
 ```markdown
@@ -201,7 +201,7 @@ If issues found:
 </process>
 
 <success_criteria>
-- [ ] Test scope identified from SUMMARY.md
+- [ ] Test scope identified from INTEGRATE.md
 - [ ] Checklist generated based on acceptance criteria
 - [ ] User guided through each test via AskUserQuestion
 - [ ] All test results captured (pass/fail/partial/skip)

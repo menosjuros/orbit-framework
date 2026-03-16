@@ -28,7 +28,7 @@ Templates define the structure for generated documents. Each template file conta
 
 **Curly braces** for variable interpolation:
 ```
-{phase}-{plan}-PLAN.md
+{phase}-{plan}-REFINE.md
 .orbit/phases/{phase-number}-{name}/
 ```
 

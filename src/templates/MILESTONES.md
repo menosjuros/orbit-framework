@@ -148,7 +148,7 @@ Include decimal phases in the range when relevant:
 **Phases completed:** 1-6 (4 plans total)
 
 **Key accomplishments:**
-- PLAN.md, STATE.md, PROJECT.md, SUMMARY.md templates
+- REFINE.md, STATE.md, PROJECT.md, INTEGRATE.md templates
 - ROADMAP.md with phase structure
 - CARL ORBIT domain with 11 rules
 

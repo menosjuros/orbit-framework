@@ -1,5 +1,5 @@
 <purpose>
-Reconcile what was planned vs. what was built. Create SUMMARY.md documenting results, update STATE.md with new position, and close the loop to prepare for next REFINE.
+Reconcile what was planned vs. what was built. Create INTEGRATE.md documenting results, update STATE.md with new position, and close the loop to prepare for next REFINE.
 </purpose>
 
 <when_to_use>
@@ -16,12 +16,12 @@ Next phase: PLAN (next plan or next phase)
 
 <required_reading>
 @.orbit/STATE.md
-@.orbit/phases/{phase}/{plan}-PLAN.md
+@.orbit/phases/{phase}/{plan}-REFINE.md
 </required_reading>
 
 <references>
 @~/.claude/orbit-framework/references/loop-phases.md
-@~/.claude/orbit-framework/templates/SUMMARY.md
+@~/.claude/orbit-framework/templates/INTEGRATE.md
 @~/.claude/orbit-framework/workflows/transition-phase.md (loaded when last plan in phase)
 </references>
 
@@ -33,7 +33,7 @@ Next phase: PLAN (next plan or next phase)
    - Which tasks failed (if any)
    - Which checkpoints were resolved and how
    - Any deviations from the plan
-2. Read PLAN.md to refresh:
+2. Read REFINE.md to refresh:
    - Original acceptance criteria
    - Expected outputs
    - Task definitions
@@ -79,13 +79,13 @@ Next phase: PLAN (next plan or next phase)
    d. Do NOT block INTEGRATE for skill gaps (warn only)
 
 4. If all required skills invoked:
-   - Note in SUMMARY.md: "Skill audit: All required skills invoked ✓"
+   - Note in INTEGRATE.md: "Skill audit: All required skills invoked ✓"
 
 **Reference:** @references/specialized-workflow-integration.md
 </step>
 
 <step name="create_summary">
-1. Create SUMMARY.md at `.orbit/phases/{phase}/{plan}-SUMMARY.md`
+1. Create INTEGRATE.md at `.orbit/phases/{phase}/{plan}-INTEGRATE.md`
 2. Include:
 
    **Frontmatter:**
@@ -136,8 +136,8 @@ Next phase: PLAN (next plan or next phase)
 <step name="check_phase_completion">
 **Determine if this is the last plan in the phase:**
 
-1. Count PLAN.md files in current phase directory
-2. Count SUMMARY.md files (including the one just created)
+1. Count REFINE.md files in current phase directory
+2. Count INTEGRATE.md files (including the one just created)
 3. Compare counts:
    - If PLAN count = SUMMARY count → Last plan, trigger transition
    - If PLAN count > SUMMARY count → More plans remain in phase
@@ -197,7 +197,7 @@ Continue to next plan?
 </process>
 
 <output>
-- SUMMARY.md at `.orbit/phases/{phase}/{plan}-SUMMARY.md`
+- INTEGRATE.md at `.orbit/phases/{phase}/{plan}-INTEGRATE.md`
 - Updated STATE.md
 - Updated ROADMAP.md (if phase complete)
 </output>
@@ -211,16 +211,16 @@ Continue to next plan?
 **Missing execution context:**
 - If no memory of execution results, read any logs
 - Ask user to confirm what was completed
-- Document uncertainty in SUMMARY.md
+- Document uncertainty in INTEGRATE.md
 
-**PLAN.md missing:**
+**REFINE.md missing:**
 - Cannot reconcile without original plan
 - Ask user to locate or reconstruct
 </error_handling>
 
 <anti_patterns>
 **Skipping SUMMARY:**
-Every completed plan MUST have a SUMMARY.md. No exceptions.
+Every completed plan MUST have a INTEGRATE.md. No exceptions.
 
 **Partial state updates:**
 Update ALL of: SUMMARY, STATE, ROADMAP (if phase done). Don't leave partial.

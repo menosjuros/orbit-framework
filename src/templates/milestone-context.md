@@ -112,7 +112,7 @@ Template for `.orbit/MILESTONE-CONTEXT.md` — temporary handoff from discuss-mi
 | Technical implementation details | That comes during phase planning |
 | Detailed phase specifications | create-milestone handles that |
 | Code architecture decisions | Research phase work |
-| Exhaustive task lists | PLAN.md level of detail |
+| Exhaustive task lists | REFINE.md level of detail |
 
 **Key principle:** This captures the *what* and *why*, not the *how*.
 

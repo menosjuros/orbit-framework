@@ -1,6 +1,6 @@
-# DISCOVERY.md Template
+# OBSERVE.md Template
 
-Template for `.orbit/phases/{phase-number}-{name}/DISCOVERY.md` — technical discovery documentation.
+Template for `.orbit/phases/{phase-number}-{name}/OBSERVE.md` — technical discovery documentation.
 
 **Purpose:** Document technical research, options comparison, and recommendations before planning.
 

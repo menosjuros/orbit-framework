@@ -23,7 +23,7 @@ Never write: "We changed X to Y", "Previously", "No longer", "Instead of"
 
 Always: Describe current state only.
 
-Exception: SUMMARY.md deviations section, git commits (their purpose IS tracking change)
+Exception: INTEGRATE.md deviations section, git commits (their purpose IS tracking change)
 
 ## Naming Conventions
 
@@ -35,7 +35,7 @@ Exception: SUMMARY.md deviations section, git commits (their purpose IS tracking
 | Bash variables | CAPS_UNDERSCORES | `PHASE_ARG` |
 | Type attributes | colon separator | `type="checkpoint:human-verify"` |
 | Phase directories | `NN-kebab-name` | `02-rules-layer` |
-| Plan files | `NN-NN-PLAN.md` | `02-01-PLAN.md` |
+| Plan files | `NN-NN-REFINE.md` | `02-01-REFINE.md` |
 
 ## XML Conventions
 
@@ -75,14 +75,14 @@ Enable secure user access
 ```markdown
 # Static (always load)
 @src/workflows/plan-phase.md
-@src/templates/PLAN.md
+@src/templates/REFINE.md
 
 # Project-relative (dynamic)
 @.orbit/PROJECT.md
 @.orbit/STATE.md
 
 # Conditional
-@.orbit/DISCOVERY.md (if exists)
+@.orbit/OBSERVE.md (if exists)
 ```
 
 ## Loop Terminology
@@ -91,9 +91,9 @@ ORBIT uses explicit loop phase names:
 
 | Phase | Purpose | Artifacts |
 |-------|---------|-----------|
-| PLAN | Define work, acceptance criteria | PLAN.md |
+| PLAN | Define work, acceptance criteria | REFINE.md |
 | APPLY | Execute approved plan | Code changes, BUILD-LOG |
-| UNIFY | Reconcile plan vs actual | SUMMARY.md, STATE.md updates |
+| UNIFY | Reconcile plan vs actual | INTEGRATE.md, STATE.md updates |
 
 Always reference the current loop position when relevant.
 

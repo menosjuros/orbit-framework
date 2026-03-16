@@ -84,5 +84,5 @@ Template for `.orbit/phases/{NN}-{name}/CONTEXT.md` - phase discussion context h
 |------|--------------|
 | ROADMAP.md | Source of phase definition |
 | CONTEXT.md | Discussion output (this file) |
-| PLAN.md | Consumes context for planning |
+| REFINE.md | Consumes context for planning |
 | RESEARCH.md | May inform context or result from questions |

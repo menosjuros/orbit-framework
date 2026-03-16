@@ -90,7 +90,7 @@ Active blockers affecting progress:
 
 Protected elements for current phase:
 
-- [Protected file/pattern from current PLAN.md]
+- [Protected file/pattern from current REFINE.md]
 - [Another protected element]
 
 ## Session Continuity
@@ -162,7 +162,7 @@ Resume context: [Key information needed to continue]
 
 ### Boundaries (Active)
 **Purpose:** Quick reference to current phase protections.
-**Contains:** Protected files/patterns from active PLAN.md.
+**Contains:** Protected files/patterns from active REFINE.md.
 
 **Update:** When entering new REFINE phase.
 

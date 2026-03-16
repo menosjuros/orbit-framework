@@ -1,9 +1,9 @@
 <purpose>
-Execute an approved PLAN.md by running tasks in order, verifying each, handling checkpoints, and recording results for INTEGRATE phase reconciliation.
+Execute an approved REFINE.md by running tasks in order, verifying each, handling checkpoints, and recording results for INTEGRATE phase reconciliation.
 </purpose>
 
 <when_to_use>
-- User has approved a PLAN.md (explicit approval required)
+- User has approved a REFINE.md (explicit approval required)
 - STATE.md shows loop position at REFINE complete, ready for BUILD
 - No unresolved blockers from planning phase
 </when_to_use>
@@ -16,7 +16,7 @@ Next phase:  INTEGRATE (after execution completes)
 
 <required_reading>
 @.orbit/STATE.md
-@.orbit/phases/{phase}/{plan}-PLAN.md
+@.orbit/phases/{phase}/{plan}-REFINE.md
 </required_reading>
 
 <references>
@@ -39,7 +39,7 @@ Next phase:  INTEGRATE (after execution completes)
 </step>
 
 <step name="load_plan">
-1. Read the PLAN.md file
+1. Read the REFINE.md file
 2. Parse frontmatter:
    - autonomous: determines checkpoint handling
    - files_modified: track what we'll change
@@ -52,7 +52,7 @@ Next phase:  INTEGRATE (after execution completes)
 <step name="verify_required_skills" priority="blocking">
 **BLOCKING CHECK: Required skills must be loaded before execution.**
 
-1. Check if PLAN.md has a <skills> section
+1. Check if REFINE.md has a <skills> section
 2. If no <skills> section: proceed (no skill requirements)
 3. If <skills> section exists:
    a. For each skill marked "required":

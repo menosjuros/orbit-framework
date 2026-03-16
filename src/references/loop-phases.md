@@ -22,7 +22,7 @@ Explain the semantics of ORBIT's three loop phases: REFINE, BUILD, INTEGRATE. Ev
 **Purpose:** Define what will be built, how it will be verified, and what's out of scope.
 
 **Artifacts Created:**
-- `{phase}-{plan}-PLAN.md` in `.orbit/phases/{phase-name}/`
+- `{phase}-{plan}-REFINE.md` in `.orbit/phases/{phase-name}/`
 
 **Activities:**
 1. Analyze requirements and context
@@ -38,7 +38,7 @@ Explain the semantics of ORBIT's three loop phases: REFINE, BUILD, INTEGRATE. Ev
 - ROADMAP indicates this phase is next
 
 **Exit Condition:**
-- PLAN.md created with all required sections
+- REFINE.md created with all required sections
 - User has approved the plan
 - STATE.md updated to show "ready for BUILD"
 
@@ -57,7 +57,7 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 - BUILD-LOG (optional, for complex plans)
 
 **Activities:**
-1. Read PLAN.md to load task definitions
+1. Read REFINE.md to load task definitions
 2. For each task:
    - Execute the action
    - Run verification
@@ -67,7 +67,7 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 4. Track deviations from plan
 
 **Entry Condition:**
-- PLAN.md exists and is approved
+- REFINE.md exists and is approved
 - STATE.md shows loop position at REFINE complete
 
 **Exit Condition:**
@@ -86,12 +86,12 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 **Purpose:** Reconcile what was planned vs. what was built. Close the loop.
 
 **Artifacts Created:**
-- `{phase}-{plan}-SUMMARY.md` in `.orbit/phases/{phase-name}/`
+- `{phase}-{plan}-INTEGRATE.md` in `.orbit/phases/{phase-name}/`
 - Updated `STATE.md`
 - Updated `ROADMAP.md` (if phase complete)
 
 **Activities:**
-1. Compare PLAN.md tasks to actual execution
+1. Compare REFINE.md tasks to actual execution
 2. Document what was built (files, lines)
 3. Record acceptance criteria results (PASS/FAIL)
 4. Note any deviations and why
@@ -105,7 +105,7 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 - BUILD phase complete (all tasks done or documented blockers)
 
 **Exit Condition:**
-- SUMMARY.md created with results
+- INTEGRATE.md created with results
 - STATE.md updated with new position
 - Loop closed, ready for next REFINE
 
@@ -123,7 +123,7 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 "Let me just quickly implement this without a plan"
 
 # GOOD
-"Let me create a PLAN.md first, even for small work"
+"Let me create a REFINE.md first, even for small work"
 ```
 Why: No plan = no acceptance criteria = no way to verify completion.
 
@@ -143,7 +143,7 @@ Why: Plans may have incorrect assumptions. Approval catches issues early.
 "Tasks done. Moving to next phase."
 
 # GOOD
-"Tasks done. Creating SUMMARY.md and updating STATE.md."
+"Tasks done. Creating INTEGRATE.md and updating STATE.md."
 ```
 Why: No INTEGRATE = no record of what was built = lost traceability.
 
@@ -153,7 +153,7 @@ Why: No INTEGRATE = no record of what was built = lost traceability.
 Trigger: User approves plan (explicit signal)
 
 Validation:
-- [ ] PLAN.md has all required sections
+- [ ] REFINE.md has all required sections
 - [ ] Acceptance criteria are testable
 - [ ] Tasks have Files, Action, Verify, Done
 - [ ] Boundaries are clear
@@ -167,10 +167,10 @@ Validation:
 - [ ] Deviations noted
 
 ### INTEGRATE → PLAN (next)
-Trigger: SUMMARY.md created, STATE.md updated
+Trigger: INTEGRATE.md created, STATE.md updated
 
 Validation:
-- [ ] SUMMARY.md has AC results
+- [ ] INTEGRATE.md has AC results
 - [ ] STATE.md reflects new position
 - [ ] ROADMAP.md updated if phase complete
 

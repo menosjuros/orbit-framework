@@ -201,7 +201,7 @@ When planning, reference CONCERNS.md:
 ### Tracking Improvement
 
 Compare scans over time:
-- Note issue count changes in SUMMARY.md
+- Note issue count changes in INTEGRATE.md
 - Celebrate quality improvements
 - Identify recurring problem areas
 

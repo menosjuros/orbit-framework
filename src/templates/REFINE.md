@@ -1,8 +1,8 @@
-# PLAN.md Template
+# REFINE.md Template
 
-Template for `.orbit/phases/{phase-number}-{name}/{phase}-{plan}-PLAN.md` - executable phase plans.
+Template for `.orbit/phases/{phase-number}-{name}/{phase}-{plan}-REFINE.md` - executable phase plans.
 
-**Naming:** `{phase}-{plan}-PLAN.md` (e.g., `01-02-PLAN.md` for Phase 1, Plan 2)
+**Naming:** `{phase}-{plan}-REFINE.md` (e.g., `01-02-REFINE.md` for Phase 1, Plan 2)
 
 ---
 
@@ -175,7 +175,7 @@ Before declaring plan complete:
 </success_criteria>
 
 <output>
-After completion, create `.orbit/phases/XX-name/{phase}-{plan}-SUMMARY.md`
+After completion, create `.orbit/phases/XX-name/{phase}-{plan}-INTEGRATE.md`
 </output>
 ```
 

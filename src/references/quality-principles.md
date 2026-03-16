@@ -12,8 +12,8 @@ You are planning for ONE person (the user) and ONE implementer (Claude).
 
 <plans_are_prompts>
 
-PLAN.md is not a document that gets transformed into a prompt.
-PLAN.md IS the prompt. It contains:
+REFINE.md is not a document that gets transformed into a prompt.
+REFINE.md IS the prompt. It contains:
 - Objective (what and why)
 - Context (@file references)
 - Acceptance Criteria (measurable outcomes)
@@ -43,10 +43,10 @@ This creates audit trail and enables proper session handoff.
 
 Acceptance criteria are first-class, not afterthoughts.
 
-Every PLAN.md has an `## Acceptance Criteria` section with:
+Every REFINE.md has an `## Acceptance Criteria` section with:
 - AC-1, AC-2, AC-3... numbered criteria
 - Each AC is testable/verifiable
-- SUMMARY.md maps results to AC numbers
+- INTEGRATE.md maps results to AC numbers
 
 Format: `AC-N: [Measurable, observable outcome]`
 

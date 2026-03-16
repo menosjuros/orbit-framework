@@ -120,7 +120,7 @@ Every unit of work follows this cycle:
 
 ### REFINE
 
-Create a PLAN.md with:
+Create a REFINE.md with:
 - **Objective** — What you're building and why
 - **Acceptance Criteria** — Given/When/Then definitions of done
 - **Tasks** — Files, action, verify, done for each step
@@ -137,7 +137,7 @@ Execute the approved plan:
 ### INTEGRATE
 
 Close the loop — **never skip this**:
-- Create SUMMARY.md documenting what was built
+- Create INTEGRATE.md documenting what was built
 - Compare plan vs actual
 - Record decisions and deferred issues
 - Update STATE.md
@@ -278,18 +278,18 @@ Run `/orbit:help` for the full reference.
 ├── SPECIAL-FLOWS.md     # Optional skill requirements
 └── phases/
     ├── 01-foundation/
-    │   ├── 01-01-PLAN.md
-    │   └── 01-01-SUMMARY.md
+    │   ├── 01-01-REFINE.md
+    │   └── 01-01-INTEGRATE.md
     └── 02-features/
-        ├── 02-01-PLAN.md
-        └── 02-01-SUMMARY.md
+        ├── 02-01-REFINE.md
+        └── 02-01-INTEGRATE.md
 ```
 
 ### State management
 
 **STATE.md** tracks current phase, loop position (REFINE/BUILD/INTEGRATE), session continuity, accumulated decisions, and blockers. `/orbit:resume` reads it and gives exactly ONE next action — no decision fatigue.
 
-### PLAN.md structure
+### REFINE.md structure
 
 ```markdown
 ---

@@ -49,7 +49,7 @@ Why 50% not 80%?
 - More than 3 tasks (even if tasks seem small)
 - Multiple subsystems (DB + API + UI = separate plans)
 - Any task with >5 file modifications
-- Discovery + implementation (DISCOVERY.md in one plan, implementation in another)
+- Discovery + implementation (OBSERVE.md in one plan, implementation in another)
 
 **Consider splitting when:**
 - Estimated >5 files modified total

@@ -30,7 +30,7 @@ ORBIT uses context brackets to adapt behavior based on remaining capacity:
 - Single-concern plans
 
 ### DEEP (20-40%)
-- Read SUMMARY.md instead of full PLAN.md
+- Read INTEGRATE.md instead of full REFINE.md
 - Defer new complex work to fresh session
 - Focus on completing current plan
 - Prepare handoff documentation
@@ -56,8 +56,8 @@ ORBIT uses context brackets to adapt behavior based on remaining capacity:
 @.orbit/PROJECT.md
 @.orbit/ROADMAP.md
 @.orbit/STATE.md
-@.orbit/phases/01-foundation/01-01-SUMMARY.md
-@.orbit/phases/01-foundation/01-02-SUMMARY.md
+@.orbit/phases/01-foundation/01-01-INTEGRATE.md
+@.orbit/phases/01-foundation/01-02-INTEGRATE.md
 @src/models/user.ts
 @src/models/product.ts
 @src/api/routes.ts
@@ -69,11 +69,11 @@ When referencing prior work:
 
 ```markdown
 <!-- GOOD: Reference summary -->
-@.orbit/phases/01-foundation/01-01-SUMMARY.md
+@.orbit/phases/01-foundation/01-01-INTEGRATE.md
 
 <!-- AVOID: Full plan + summary -->
-@.orbit/phases/01-foundation/01-01-PLAN.md
-@.orbit/phases/01-foundation/01-01-SUMMARY.md
+@.orbit/phases/01-foundation/01-01-REFINE.md
+@.orbit/phases/01-foundation/01-01-INTEGRATE.md
 ```
 
 Summaries capture what was built. Plans capture what was intended. After completion, the summary is more useful.
@@ -82,7 +82,7 @@ Summaries capture what was built. Plans capture what was intended. After complet
 Start with high-level, drill down only when needed:
 
 1. Read STATE.md (current position)
-2. Read relevant SUMMARY.md (what was built)
+2. Read relevant INTEGRATE.md (what was built)
 3. Read specific source files (implementation details)
 
 Don't load implementation details until you need them.
@@ -152,7 +152,7 @@ Always updated. Minimal but sufficient for quick resume:
 Last session: 2026-01-28 11:15
 Stopped at: Phase 3, Plan 01, Task 2 complete
 Next action: Create context-management.md reference
-Resume file: .orbit/phases/03-references-layer/03-01-PLAN.md
+Resume file: .orbit/phases/03-references-layer/03-01-REFINE.md
 Resume context:
 - Task 1 complete (checkpoints.md, plan-format.md created)
 - Task 2 in progress
@@ -208,11 +208,11 @@ Why bad: Next session loses context. Always prepare resume.
 
 | Activity | Typical Cost |
 |----------|--------------|
-| PLAN.md template | ~3-5k tokens |
+| REFINE.md template | ~3-5k tokens |
 | Read source file | ~1-3k tokens |
 | Task execution | ~5-15k tokens |
 | Verification output | ~2-5k tokens |
-| SUMMARY.md write | ~2-3k tokens |
+| INTEGRATE.md write | ~2-3k tokens |
 
 Plan your work with these estimates in mind.
 

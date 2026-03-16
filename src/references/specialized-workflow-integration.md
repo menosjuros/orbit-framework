@@ -23,7 +23,7 @@ SPECIAL-FLOWS.md   →  "This project uses X, Y, Z skills"
        ↓
 ROADMAP.md         →  "Phase 2 requires X skill"
        ↓
-PLAN.md            →  "Task 2.1 invokes /frontend-design"
+REFINE.md            →  "Task 2.1 invokes /frontend-design"
        ↓
 INTEGRATE          →  "Was skill invoked? Gap noted if not"
 ```
@@ -48,7 +48,7 @@ Optionally annotate phases with required skills:
 **Required Skills:** /revops-expert (copy), /frontend-design (UI)
 ```
 
-### 3. Task Invocation (PLAN.md)
+### 3. Task Invocation (REFINE.md)
 Plans can reference skills in pre-implementation or task notes:
 
 ```markdown

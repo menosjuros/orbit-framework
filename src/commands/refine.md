@@ -13,7 +13,7 @@ Create or continue a PLAN for the specified phase.
 
 <execution_context>
 @~/.claude/orbit-framework/workflows/plan-phase.md
-@~/.claude/orbit-framework/templates/PLAN.md
+@~/.claude/orbit-framework/templates/REFINE.md
 @~/.claude/orbit-framework/references/plan-format.md
 </execution_context>
 
@@ -30,7 +30,7 @@ Follow workflow: @~/.claude/orbit-framework/workflows/plan-phase.md
 </process>
 
 <success_criteria>
-- [ ] PLAN.md created in correct phase directory
+- [ ] REFINE.md created in correct phase directory
 - [ ] All acceptance criteria defined
 - [ ] STATE.md updated with loop position
 </success_criteria>

@@ -125,6 +125,6 @@ Draft ──▶ Reviewed ──▶ Integrated
 | File | Relationship |
 |------|--------------|
 | CONTEXT.md | May inform discussion or result from questions |
-| PLAN.md | May reference research findings |
+| REFINE.md | May reference research findings |
 | RESEARCH.md | This file (research output) |
 | subagent-criteria.md | Validates when to spawn research |

@@ -6,7 +6,7 @@ Handle phase-level transition after all plans in a phase are complete. Evolves P
 </purpose>
 
 <when_to_use>
-- All plans in current phase have SUMMARY.md files
+- All plans in current phase have INTEGRATE.md files
 - Phase is ready to close
 - Moving to next phase or completing milestone
 </when_to_use>
@@ -15,14 +15,14 @@ Handle phase-level transition after all plans in a phase are complete. Evolves P
 @.orbit/STATE.md
 @.orbit/PROJECT.md
 @.orbit/ROADMAP.md
-@.orbit/phases/{current-phase}/*-SUMMARY.md
+@.orbit/phases/{current-phase}/*-INTEGRATE.md
 </required_reading>
 
 <process>
 
 <step name="verify_phase_completion" priority="first">
-1. Count PLAN.md files in current phase directory
-2. Count SUMMARY.md files in current phase directory
+1. Count REFINE.md files in current phase directory
+2. Count INTEGRATE.md files in current phase directory
 3. **Verification:**
    - If counts match: Phase complete
    - If counts don't match: Phase incomplete
@@ -34,9 +34,9 @@ PHASE INCOMPLETE
 ════════════════════════════════════════
 
 Phase {N} has incomplete plans:
-- {phase}-01-SUMMARY.md ✓
-- {phase}-02-SUMMARY.md ✗ Missing
-- {phase}-03-SUMMARY.md ✗ Missing
+- {phase}-01-INTEGRATE.md ✓
+- {phase}-02-INTEGRATE.md ✗ Missing
+- {phase}-03-INTEGRATE.md ✗ Missing
 
 Options:
 [1] Continue current phase (execute remaining plans)
@@ -62,7 +62,7 @@ Wait for user decision before proceeding.
 <step name="evolve_project">
 **Read phase summaries:**
 ```bash
-cat .orbit/phases/{current-phase}/*-SUMMARY.md
+cat .orbit/phases/{current-phase}/*-INTEGRATE.md
 ```
 
 **Assess and update PROJECT.md:**
@@ -80,7 +80,7 @@ cat .orbit/phases/{current-phase}/*-SUMMARY.md
    - Add to Active: `- [ ] [New requirement]`
 
 4. **Key Decisions to log?**
-   - Extract decisions from SUMMARY.md files
+   - Extract decisions from INTEGRATE.md files
    - Add to Key Decisions table
 
 5. **Core value still accurate?**

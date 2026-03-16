@@ -1,5 +1,5 @@
 <purpose>
-Create an executable PLAN.md for the current or specified phase. The plan defines objective, acceptance criteria, tasks, boundaries, and verification - everything needed for BUILD phase execution.
+Create an executable REFINE.md for the current or specified phase. The plan defines objective, acceptance criteria, tasks, boundaries, and verification - everything needed for BUILD phase execution.
 </purpose>
 
 <when_to_use>
@@ -19,13 +19,13 @@ Next phase: BUILD (after plan approval)
 @.orbit/STATE.md
 @.orbit/ROADMAP.md
 @.orbit/PROJECT.md
-@.orbit/phases/{prior-phase}/{plan}-SUMMARY.md (if exists and relevant)
+@.orbit/phases/{prior-phase}/{plan}-INTEGRATE.md (if exists and relevant)
 </required_reading>
 
 <references>
 @~/.claude/orbit-framework/references/plan-format.md
 @~/.claude/orbit-framework/references/checkpoints.md (if plan will have checkpoints)
-@~/.claude/orbit-framework/templates/PLAN.md
+@~/.claude/orbit-framework/templates/REFINE.md
 </references>
 
 <process>
@@ -65,7 +65,7 @@ Next phase: BUILD (after plan approval)
 1. Read PROJECT.md for:
    - Core requirements and constraints
    - Value proposition (what matters)
-2. If prior phase exists, read its SUMMARY.md for:
+2. If prior phase exists, read its INTEGRATE.md for:
    - What was built
    - Decisions made
    - Any deferred issues
@@ -81,7 +81,7 @@ Next phase: BUILD (after plan approval)
    - Read SPECIAL-FLOWS.md
    - Extract skills marked as "required" for the work type being planned
    - Match against phase/plan work being done
-   - Prepare <skills> section content for PLAN.md
+   - Prepare <skills> section content for REFINE.md
 3. If not exists:
    - Add comment: "No SPECIAL-FLOWS.md - skills section omitted"
    - Skip skills section in REFINE (or include minimal placeholder)
@@ -103,7 +103,7 @@ Required skills will BLOCK apply-phase until confirmed loaded.
 
 <step name="create_plan">
 1. Create phase directory: `.orbit/phases/{NN}-{phase-name}/`
-2. Generate PLAN.md following template structure:
+2. Generate REFINE.md following template structure:
 
    **Frontmatter:**
    - phase: NN-name
@@ -122,7 +122,7 @@ Required skills will BLOCK apply-phase until confirmed loaded.
    - <boundaries>: DO NOT CHANGE, SCOPE LIMITS
    - <verification>: Overall completion checks
    - <success_criteria>: Measurable completion
-   - <output>: SUMMARY.md location
+   - <output>: INTEGRATE.md location
 
 3. Ensure every task has:
    - Clear files list
@@ -202,9 +202,9 @@ Required skills will BLOCK apply-phase until confirmed loaded.
 </process>
 
 <output>
-PLAN.md at `.orbit/phases/{NN}-{phase-name}/{NN}-{plan}-PLAN.md`
+REFINE.md at `.orbit/phases/{NN}-{phase-name}/{NN}-{plan}-REFINE.md`
 
-Example: `.orbit/phases/04-workflows-layer/04-01-PLAN.md`
+Example: `.orbit/phases/04-workflows-layer/04-01-REFINE.md`
 </output>
 
 <error_handling>
