@@ -67,6 +67,8 @@ import { test, expect } from '@playwright/test';
 // Source: {path-to-SUMMARY.md}
 // Date: {timestamp}
 
+// Video is recorded automatically via playwright.config.ts (video: 'on')
+
 test.describe('{Plan Name} — Acceptance Tests', () => {
 
   // AC-1: {criteria title}
@@ -93,6 +95,23 @@ test.describe('{Plan Name} — Acceptance Tests', () => {
 
 });
 ```
+
+Also generate/update `playwright.config.ts` in the project root to enable video recording:
+
+```typescript
+import { defineConfig } from '@playwright/test';
+
+export default defineConfig({
+  use: {
+    video: 'on',          // record video for every test
+    screenshot: 'on',     // screenshot on every test
+    trace: 'on',          // trace for debugging
+  },
+  outputDir: '.orbit/phases/{phase-dir}/evidence',
+});
+```
+
+If `playwright.config.ts` already exists, add only the missing `video`, `screenshot`, and `trace` fields under `use:` — do NOT overwrite the entire file.
 
 **Mapping rules (Given/When/Then → Playwright):**
 
@@ -139,15 +158,22 @@ npx playwright test .orbit/phases/{phase-dir}/{plan}-e2e.spec.ts \
 After run completes, collect:
 
 1. **Exit code** — 0 = all pass, non-zero = failures
-2. **Screenshots** — saved per test in evidence dir
-3. **HTML report** — `playwright-report/index.html`
-4. **Traces** — `.zip` files in evidence dir (on failure)
+2. **Videos** — `.webm` files per test in evidence dir (full recording of each test)
+3. **Screenshots** — `.png` per test
+4. **HTML report** — `playwright-report/index.html`
+5. **Traces** — `.zip` files in evidence dir (for debugging failures)
 
 Parse test output for:
 - Total tests run
 - Passed count
 - Failed count
 - Each failed test name + error message
+
+Videos are saved as:
+`evidence/{test-name}/video.webm`
+
+To play a video: open the `.webm` file in any browser or video player.
+To view a trace: `npx playwright show-trace evidence/{test-name}/trace.zip`
 </step>
 
 <step name="write_evidence_report">
@@ -163,10 +189,10 @@ Create `.orbit/phases/{phase-dir}/{plan}-EVIDENCE.md`:
 
 ## Results
 
-| Test | AC | Status | Evidence |
-|------|----|--------|----------|
-| AC-1: {title} | AC-1 | ✅ PASS | [screenshot](evidence/{plan}-AC-1-pass.png) |
-| AC-2: {title} | AC-2 | ❌ FAIL | [screenshot](evidence/{plan}-AC-2-fail.png) |
+| Test | AC | Status | Video | Screenshot |
+|------|----|--------|-------|------------|
+| AC-1: {title} | AC-1 | ✅ PASS | [video](evidence/AC-1/video.webm) | [screenshot](evidence/{plan}-AC-1-pass.png) |
+| AC-2: {title} | AC-2 | ❌ FAIL | [video](evidence/AC-2/video.webm) | [screenshot](evidence/{plan}-AC-2-fail.png) |
 
 **Passed:** N  **Failed:** N  **Total:** N
 
@@ -177,7 +203,8 @@ Create `.orbit/phases/{phase-dir}/{plan}-EVIDENCE.md`:
 \`\`\`
 {error message from Playwright output}
 \`\`\`
-**Trace:** `evidence/{trace-file}.zip`
+**Video:** `evidence/{test-name}/video.webm`
+**Trace:** `evidence/{trace-file}.zip` — `npx playwright show-trace evidence/{trace-file}.zip`
 
 ## Verdict
 {PASS / FAIL based on results}

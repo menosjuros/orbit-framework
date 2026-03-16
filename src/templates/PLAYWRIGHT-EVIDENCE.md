@@ -10,10 +10,10 @@
 
 ## Results
 
-| Test | AC | Status | Evidence |
-|------|----|--------|----------|
-| {test title} | AC-1 | ✅ PASS | [screenshot](evidence/{plan}-AC-1-pass.png) |
-| {test title} | AC-2 | ❌ FAIL | [screenshot](evidence/{plan}-AC-2-fail.png) |
+| Test | AC | Status | Video | Screenshot |
+|------|----|--------|-------|------------|
+| {test title} | AC-1 | ✅ PASS | [video](evidence/AC-1/video.webm) | [screenshot](evidence/{plan}-AC-1-pass.png) |
+| {test title} | AC-2 | ❌ FAIL | [video](evidence/AC-2/video.webm) | [screenshot](evidence/{plan}-AC-2-fail.png) |
 
 **Passed:** N  |  **Failed:** N  |  **Total:** N
 
