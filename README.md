@@ -11,7 +11,7 @@
 <br>
 
 ```bash
-npx orbit-framework
+npx github:menosjuros/orbit-framework
 ```
 
 **Works on Mac, Windows, and Linux.**
@@ -86,10 +86,10 @@ ORBIT integrates with **[CARL](https://github.com/ChristopherKahler/carl-core)**
 
 ### 1. Install ORBIT
 
-Run the installer from anywhere — no clone needed:
+Run the installer directly from this repository — no clone needed:
 
 ```bash
-npx orbit-framework
+npx github:menosjuros/orbit-framework
 ```
 
 The installer prompts you to choose:
@@ -102,8 +102,19 @@ The installer prompts you to choose:
 <summary><strong>Non-interactive install</strong></summary>
 
 ```bash
-npx orbit-framework --global   # Install to ~/.claude/
-npx orbit-framework --local    # Install to ./.claude/
+npx github:menosjuros/orbit-framework --global   # Install to ~/.claude/
+npx github:menosjuros/orbit-framework --local    # Install to ./.claude/
+```
+
+</details>
+
+<details>
+<summary><strong>Install via clone</strong></summary>
+
+```bash
+git clone https://github.com/menosjuros/orbit-framework.git
+cd orbit-framework
+node bin/install.js
 ```
 
 </details>
@@ -147,7 +158,7 @@ This creates the `.orbit/` folder with `PROJECT.md`, `ROADMAP.md`, and `STATE.md
 ### Staying Updated
 
 ```bash
-npx orbit-framework@latest
+npx github:menosjuros/orbit-framework
 ```
 
 ---
