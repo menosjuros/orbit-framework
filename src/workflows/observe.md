@@ -65,13 +65,34 @@ Output: Verbal confirmation to proceed.
 
 For: Choosing between options, new integration.
 
+**Check if agent teams are available:**
+```bash
+echo "${CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS:-0}"
+```
+
+**If teams available (value = 1): spawn research team**
+
+Create a team with 2-3 researcher teammates, each assigned a different option or perspective. Teammates challenge each other's findings before producing OBSERVE.md.
+
+```
+Create a research team for: [topic]
+- researcher-A: investigate option A — document pros, cons, real-world usage
+- researcher-B: investigate option B — same criteria
+- researcher-C (if 3+ options): investigate option C
+Instructions: after individual research, challenge each other's findings.
+Reach a consensus recommendation.
+```
+
+Team lead synthesizes debate output into OBSERVE.md.
+
+**If teams not available: use sequential subagents**
+
 1. **Identify what to discover:**
    - What options exist?
    - Key comparison criteria?
    - Our specific use case?
 
-2. **Research each option:**
-   Use research subagent (Task tool with Explore or general-purpose):
+2. **Research each option** via Task subagents (parallel):
    - Official documentation
    - Current version/status
    - Key features for our use case
@@ -83,10 +104,8 @@ For: Choosing between options, new integration.
 
 4. **Reference quality patterns:**
    @src/references/research-quality-control.md
-   - Cross-verify findings
-   - Check source currency
-   - Assign confidence
 
+**Both paths produce:**
 5. **Create OBSERVE.md:**
    Use template: @src/templates/OBSERVE.md
    - Summary with recommendation
@@ -101,35 +120,60 @@ Output: `.orbit/projects/XX-name/OBSERVE.md`
 
 For: Architectural decisions, novel problems.
 
+**Check if agent teams are available:**
+```bash
+echo "${CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS:-0}"
+```
+
+**If teams available (value = 1): spawn adversarial debate team**
+
+Spawn 3-5 researcher teammates in explicit debate mode — each one's job is not only to investigate their theory but to actively challenge the others'.
+
+```
+Create an adversarial research team for: [topic]
+Spawn [N] teammates, each assigned a different hypothesis or approach.
+Instructions:
+- Each teammate researches their approach independently first
+- Then teammates actively try to disprove each other's findings
+- Flag contradictions and unresolved disagreements
+- Produce a consensus OBSERVE.md only after the debate
+- Document minority opinions if no clear consensus
+```
+
+Team lead monitors debate, resolves deadlocks, synthesizes final OBSERVE.md.
+
+**Confidence gate for teams:**
+If teammates cannot reach consensus:
+```
+Research team could not reach consensus on: [issue]
+
+Disagreement: [summary of competing views]
+
+Options:
+1. Dig deeper (extend the debate)
+2. Proceed with majority view (document dissent)
+3. Pause (need human input on direction)
+```
+
+**If teams not available: use sequential subagents**
+
 1. **Scope the discovery:**
    - Define clear scope
    - List specific questions to answer
    - Set include/exclude boundaries
 
-2. **Exhaustive research:**
-   Use research subagents for:
+2. **Exhaustive research** via subagents:
    - All relevant libraries/frameworks
    - Architecture patterns
-   - Best practices
-   - Known limitations
+   - Best practices / known limitations
+   - Production experiences and gotchas
 
-3. **Deep analysis:**
-   - How others solved similar problems
-   - Production experiences
-   - Gotchas and anti-patterns
-
-4. **Cross-verify ALL findings:**
+3. **Cross-verify ALL findings:**
    - Every claim verified with authoritative source
    - Mark verified vs assumed
    - Flag contradictions
 
-5. **Create comprehensive OBSERVE.md:**
-   - Full template structure
-   - Quality report with sources
-   - Confidence per finding
-   - Validation checkpoints if LOW confidence
-
-6. **Confidence gate:**
+4. **Confidence gate:**
    If LOW confidence on critical finding:
    ```
    Discovery confidence is LOW: [reason]
@@ -139,6 +183,13 @@ For: Architectural decisions, novel problems.
    2. Proceed anyway (accept uncertainty)
    3. Pause (need to think)
    ```
+
+**Both paths produce:**
+5. **Create comprehensive OBSERVE.md:**
+   - Full template structure
+   - Quality report with sources
+   - Confidence per finding
+   - Validation checkpoints if LOW confidence
 
 Output: Comprehensive `.orbit/projects/XX-name/OBSERVE.md`
 </step>

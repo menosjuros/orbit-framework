@@ -84,6 +84,40 @@ Next phase: REFINE (next plan or next phase)
 **Reference:** @references/specialized-workflow-integration.md
 </step>
 
+<step name="review_team_optional">
+**Optional parallel review before closing the loop:**
+
+Check if agent teams are available:
+```bash
+echo "${CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS:-0}"
+```
+
+**If teams available (value = 1):**
+
+Spawn a 3-reviewer team in parallel. Each reviewer has a distinct lens so they don't overlap:
+
+```
+Create a review team for plan: [plan-path]
+Spawn 3 reviewers:
+- code-reviewer: code quality, adherence to boundaries in LOOP.md, no unintended changes
+- security-reviewer: input validation, exposed secrets, injection risks, auth issues
+- coverage-reviewer: are all ACs actually satisfied? any edge cases missed?
+
+Each reviewer reads the LOOP.md and the changed files.
+Each produces a short findings list (PASS or issues with severity: blocker/major/minor).
+Team lead synthesizes into a review summary.
+```
+
+After team completes, extract:
+- Any **blocker** findings → block INTEGRATE, route to `/orbit:plan-fix`
+- **Major** findings → include in INTEGRATE.md, user decides
+- **Minor** findings → logged as deferred issues in INTEGRATE.md
+
+**If teams not available:** skip this step, proceed to create_summary.
+
+**If no blockers:** continue to create INTEGRATE.md including review summary.
+</step>
+
 <step name="create_summary">
 1. Create INTEGRATE.md at `.orbit/projects/{phase}/{plan}-INTEGRATE.md`
 2. Include:

@@ -1,19 +1,24 @@
 ---
 name: orbit:test
-description: Guide manual user acceptance testing of recently built features
-argument-hint: "[optional: phase or plan number, e.g., '4' or '04-02']"
-allowed-tools: [Read, Bash, Glob, Grep, Edit, Write, AskUserQuestion]
+description: Run integration tests against acceptance criteria — auto-detects test runner, writes missing tests, then falls back to manual UAT
+argument-hint: "[optional: phase or plan number, e.g., '4' or '04-02'] [--manual] [--e2e]"
+allowed-tools: [Read, Bash, Glob, Grep, Edit, Write, AskUserQuestion, Task]
 ---
 
 <objective>
-Guide the user through manual acceptance testing of recently built features.
+Validate that what was built satisfies the acceptance criteria defined in LOOP.md.
 
-**When to use:** After completing a plan, validate that what Claude built actually works from the user's perspective.
+**Primary mode:** Auto-detect the project's test runner, write integration tests for any ACs without coverage, run them, and map results back to AC-1, AC-2, etc.
 
-**Who tests:** The USER performs all testing. Claude generates the test checklist, guides the process, and captures issues.
+**Fallback:** If no test runner is detected and --e2e is not passed, fall back to guided manual UAT.
+
+**Flags:**
+- `--manual` — skip auto-detection, go straight to manual UAT
+- `--e2e` — attempt Playwright CLI for browser-based tests (requires `npx playwright` available)
 </objective>
 
 <execution_context>
+@~/.claude/orbit-framework/workflows/test-auto.md
 @~/.claude/orbit-framework/workflows/verify-work.md
 @~/.claude/orbit-framework/templates/TEST.md
 </execution_context>
@@ -28,33 +33,29 @@ Scope: $ARGUMENTS (optional)
 </context>
 
 <process>
-**Follow workflow: @~/.claude/orbit-framework/workflows/verify-work.md**
+**If --manual flag present:**
+  Follow workflow: @~/.claude/orbit-framework/workflows/verify-work.md
 
-The workflow implements:
-1. Identify test scope (specified or most recent SUMMARY)
-2. Extract testable deliverables from INTEGRATE.md
-3. Generate test checklist based on acceptance criteria
-4. Guide user through each test via AskUserQuestion
-5. Collect and categorize any issues found
-6. Log issues to phase-scoped UAT file
-7. Present summary with verdict
-8. Offer next steps based on results
+**Otherwise:**
+  Follow workflow: @~/.claude/orbit-framework/workflows/test-auto.md
 </process>
 
 <success_criteria>
-- [ ] Test scope identified from INTEGRATE.md
-- [ ] Checklist generated based on deliverables
-- [ ] User guided through each test
-- [ ] All test results captured (pass/fail/partial/skip)
-- [ ] Any issues logged to `.orbit/projects/XX-name/{plan}-UAT.md`
+- [ ] Test scope identified (from LOOP.md or INTEGRATE.md)
+- [ ] ACs extracted for validation
+- [ ] Test runner detected (or manual mode triggered)
+- [ ] Integration tests written for uncovered ACs
+- [ ] Tests executed and results captured
+- [ ] Results mapped to AC-1, AC-2... (PASS/FAIL)
+- [ ] Issues logged to `.orbit/projects/XX-name/{plan}-UAT.md`
 - [ ] Summary presented with verdict
-- [ ] User knows next steps based on results
+- [ ] User knows next steps
 </success_criteria>
 
 <anti_patterns>
-- Don't run automated tests (that's for CI/test suites)
-- Don't make assumptions about test results — USER reports outcomes
-- Don't skip the guidance — walk through each test
-- Don't dismiss minor issues — log everything user reports
-- Don't fix issues during testing — capture for later
+- Don't install new test frameworks — use what the project already has
+- Don't skip writing tests — if an AC has no test, write one before running
+- Don't fix issues during testing — capture for /orbit:plan-fix
+- Don't assume pass — run the tests, read the output
+- Don't use Playwright unless --e2e flag is passed or it's already installed
 </anti_patterns>
