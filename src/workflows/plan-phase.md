@@ -39,18 +39,6 @@ Next phase: BUILD (after plan approval)
    - Do not proceed until resolved
 </step>
 
-<step name="ensure_observe" priority="second">
-**Check if OBSERVE.md exists for this phase. If not, run observe first.**
-
-1. Determine the phase directory (from STATE.md or $ARGUMENTS)
-2. Check for `.orbit/phases/{NN}-{name}/OBSERVE.md`
-3. If OBSERVE.md exists → load it as context and proceed to planning
-4. If OBSERVE.md does not exist:
-   - Inform user: "Running /orbit:observe first to load context..."
-   - Execute observe workflow: @~/.claude/orbit-framework/workflows/discovery.md
-   - Once OBSERVE.md is created, continue with planning
-</step>
-
 <step name="identify_phase">
 1. Read ROADMAP.md to determine:
    - Which phase is next (first incomplete phase)

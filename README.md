@@ -28,7 +28,7 @@ ORBIT is a structured development loop for Claude Code. Each letter is a phase:
 
 | | Phase | What happens |
 |--|-------|-------------|
-| **O** | **Observe** | Load context before planning. Understand a feature, flow, or business rule — technical, domain logic, and decisions already in place. |
+| **O** | **Observe** | Optional pre-planning step. Research technical options, compare libraries, and make architecture decisions before planning. Produces an OBSERVE.md with recommendation and confidence level. |
 | **R** | **Refine** | Shape the plan. Acceptance criteria, scope, boundaries. |
 | **B** | **Build** | Execute in-session. Sequential tasks, every deviation logged. |
 | **I** | **Integrate** | Reconcile plan vs reality. Record decisions, close the loop. |
@@ -113,16 +113,10 @@ Every unit of work follows this cycle:
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│  OBSERVE ──▶ REFINE ──▶ BUILD ──▶ INTEGRATE                 │
-│  Load ctx    Define    Execute    Reconcile & close          │
+│  REFINE ──▶ BUILD ──▶ INTEGRATE                              │
+│  Define    Execute    Reconcile & close                      │
 └──────────────────────────────────────────────────────────────┘
 ```
-
-### OBSERVE
-
-Load all context needed before planning — technical options, business rules, existing codebase patterns, and relevant decisions. Produces an OBSERVE.md consumed by REFINE.
-
-**Always runs before REFINE.** Calling `/orbit:refine` directly triggers observe automatically if OBSERVE.md doesn't exist yet for the phase. If it already exists, it's skipped.
 
 ### REFINE
 
@@ -155,7 +149,6 @@ Close the loop — **never skip this**:
 **Starting a new project:**
 ```
 /orbit:init → /orbit:refine → /orbit:build → /orbit:integrate
-             (observe runs automatically before refine)
 ```
 
 **Resuming after a break (new session):**
@@ -170,7 +163,7 @@ Close the loop — **never skip this**:
 
 **Pre-planning a phase:**
 ```
-/orbit:discuss 3 → /orbit:assumptions 3 → /orbit:observe "topic" → /orbit:refine 3
+/orbit:cocreate 3 → /orbit:assumptions 3 → /orbit:observe "topic" → /orbit:refine 3
 ```
 
 **Technical unknowns before planning:**
@@ -228,8 +221,8 @@ Run `/orbit:help` for the full reference.
 
 | Command | What it does |
 |---------|--------------|
-| `/orbit:observe <topic>` | Load context before planning (auto-runs as refine dependency) |
-| `/orbit:discuss <phase>` | Capture decisions before planning |
+| `/orbit:observe <topic>` | Research technical options and make decisions before planning |
+| `/orbit:cocreate <phase>` | Articulate phase vision and goals before planning |
 | `/orbit:assumptions <phase>` | Surface Claude's intended approach |
 | `/orbit:consider-issues` | Triage deferred issues |
 
@@ -253,7 +246,7 @@ Run `/orbit:help` for the full reference.
 |---------|--------------|
 | `/orbit:milestone <name>` | Create new milestone |
 | `/orbit:complete-milestone` | Archive and tag milestone |
-| `/orbit:discuss-milestone` | Articulate vision before starting |
+| `/orbit:cocreate-milestone` | Articulate vision before starting a milestone |
 
 ### Specialized
 

@@ -1,6 +1,6 @@
 # Milestone Context Template
 
-Template for `.orbit/MILESTONE-CONTEXT.md` — temporary handoff from discuss-milestone to create-milestone.
+Template for `.orbit/MILESTONE-CONTEXT.md` — temporary handoff from cocreate-milestone to create-milestone.
 
 **Purpose:** Persist milestone discussion context across `/clear` boundaries. This is a handoff artifact, not permanent documentation.
 
@@ -66,7 +66,7 @@ Template for `.orbit/MILESTONE-CONTEXT.md` — temporary handoff from discuss-mi
 │                    MILESTONE CONTEXT LIFECYCLE                   │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│  1. /orbit:discuss-milestone                                      │
+│  1. /orbit:cocreate-milestone                                      │
 │     └─> Explores features, scope, constraints                    │
 │     └─> Creates MILESTONE-CONTEXT.md at end                      │
 │                                                                  │
@@ -86,7 +86,7 @@ Template for `.orbit/MILESTONE-CONTEXT.md` — temporary handoff from discuss-mi
 
 ### Key Points
 
-1. **Created by:** `discuss-milestone` command at end of discussion
+1. **Created by:** `cocreate-milestone` command at end of discussion
 2. **Consumed by:** `create-milestone` command
 3. **Deleted after:** Milestone successfully created
 4. **Not committed:** Exclude from version control (temporary artifact)
@@ -120,14 +120,14 @@ Template for `.orbit/MILESTONE-CONTEXT.md` — temporary handoff from discuss-mi
 
 ## Integration with ORBIT Workflow
 
-### Before discuss-milestone
+### Before cocreate-milestone
 
 ```
 STATE.md shows: Previous milestone complete
 ROADMAP.md shows: Phases complete, next milestone undefined
 ```
 
-### After discuss-milestone
+### After cocreate-milestone
 
 ```
 MILESTONE-CONTEXT.md: Created with discussion output
@@ -169,7 +169,7 @@ STATE.md: Updated with new phase position
 | Phase | Focus | Features |
 |-------|-------|----------|
 | 9 | Templates | MILESTONES.md, archive, context templates |
-| 10 | Workflows | discuss-milestone, complete-milestone, add-phase |
+| 10 | Workflows | cocreate-milestone, complete-milestone, add-phase |
 | 11 | Commands | CLI commands for milestone operations |
 
 ## Constraints

@@ -37,8 +37,8 @@ After discussion, routes to /orbit:refine (plan-phase).
 ```
 Error: Phase number required.
 
-Usage: /orbit:discuss <phase-number>
-Example: /orbit:discuss 10
+Usage: /orbit:cocreate <phase-number>
+Example: /orbit:cocreate 10
 ```
 Exit workflow.
 

@@ -1,5 +1,5 @@
 ---
-name: orbit:discuss-milestone
+name: orbit:cocreate-milestone
 description: Explore and articulate next milestone vision
 argument-hint: ""
 allowed-tools: [Read, Write, AskUserQuestion]
@@ -12,7 +12,7 @@ Facilitate vision discussion for the next milestone and create context handoff.
 </objective>
 
 <execution_context>
-@~/.claude/orbit-framework/workflows/discuss-milestone.md
+@~/.claude/orbit-framework/workflows/cocreate-milestone.md
 </execution_context>
 
 <context>
@@ -23,7 +23,7 @@ Facilitate vision discussion for the next milestone and create context handoff.
 </context>
 
 <process>
-Follow workflow: @~/.claude/orbit-framework/workflows/discuss-milestone.md
+Follow workflow: @~/.claude/orbit-framework/workflows/cocreate-milestone.md
 </process>
 
 <success_criteria>

@@ -1,46 +1,50 @@
 ---
 name: orbit:observe
-description: Load all context needed before planning — technical, business, and codebase
+description: Research technical options and make decisions before planning a phase
 argument-hint: "<phase or topic>"
 allowed-tools: [Read, Bash, Glob, Grep, WebSearch, WebFetch, Task, AskUserQuestion]
 ---
 
 <objective>
-Load everything needed into context before planning a phase. Covers technical options, business rules, existing codebase patterns, and relevant decisions.
+Execute technical discovery to inform planning decisions. Produces OBSERVE.md with findings, recommendation, and confidence level.
 
-**Always runs before REFINE** — either called directly or triggered automatically by `/orbit:refine` as a dependency.
+**When to use:** Before planning a phase with technical unknowns (library selection, architecture decisions, integration approaches).
 
-If OBSERVE.md already exists for the phase, `/orbit:refine` skips this step.
+**Distinct from /orbit:research:** Research gathers documentation/information. Observe makes technical decisions.
+
+**Not part of the main loop** — run explicitly when there are genuine technical unknowns to resolve.
 </objective>
 
 <execution_context>
-@~/.claude/orbit-framework/workflows/discovery.md
+@~/.claude/orbit-framework/workflows/observe.md
 @~/.claude/orbit-framework/templates/OBSERVE.md
 </execution_context>
 
 <context>
 $ARGUMENTS (phase number or topic)
 
-@.orbit/PROJECT.md
 @.orbit/STATE.md
 @.orbit/ROADMAP.md
 </context>
 
 <process>
-**Follow workflow: @~/.claude/orbit-framework/workflows/discovery.md**
+**Follow workflow: @~/.claude/orbit-framework/workflows/observe.md**
 
-Load context across all relevant dimensions:
-1. **Technical** — options, libraries, architecture decisions
-2. **Business** — domain rules, expected behavior, constraints
-3. **Codebase** — existing patterns, relevant implementations, decisions already made
-
-Output: OBSERVE.md with full context picture, ready for /orbit:refine to consume.
+The workflow implements:
+1. Determine depth level (quick/standard/deep)
+2. Identify unknowns for the phase
+3. Research options using subagents
+4. Cross-verify findings
+5. Create OBSERVE.md with recommendation
+6. Assign confidence level
+7. Route to planning when complete
 </process>
 
 <success_criteria>
-- [ ] Technical context loaded
-- [ ] Business rules and domain logic identified
-- [ ] Relevant codebase patterns surfaced
-- [ ] OBSERVE.md created in phase directory
+- [ ] Observe depth determined
+- [ ] Unknowns identified
+- [ ] Options researched with sources
+- [ ] OBSERVE.md created (for standard/deep)
+- [ ] Recommendation provided with confidence
 - [ ] Ready for /orbit:refine
 </success_criteria>

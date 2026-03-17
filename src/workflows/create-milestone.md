@@ -1,10 +1,10 @@
 <purpose>
-Define a new milestone in the project. Creates milestone structure in ROADMAP.md, initializes phase directories, and updates project state. Uses MILESTONE-CONTEXT.md handoff if available from discuss-milestone.
+Define a new milestone in the project. Creates milestone structure in ROADMAP.md, initializes phase directories, and updates project state. Uses MILESTONE-CONTEXT.md handoff if available from cocreate-milestone.
 </purpose>
 
 <when_to_use>
 - User explicitly requests new milestone
-- Triggered after /orbit:discuss-milestone (reads context)
+- Triggered after /orbit:cocreate-milestone (reads context)
 - Project completed previous milestone, needs next
 - Starting fresh project milestone planning
 </when_to_use>
@@ -34,7 +34,7 @@ After create-milestone, project is ready for first phase PLAN.
    ```
 
 2. **If found:**
-   - Display: "Loading context from discuss-milestone..."
+   - Display: "Loading context from cocreate-milestone..."
    - Parse: Features, Scope, Phase Mapping, Constraints
    - Store for use in subsequent steps
    - Skip to step 4 (update_roadmap)

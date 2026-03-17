@@ -1,5 +1,5 @@
 ---
-name: orbit:discuss
+name: orbit:cocreate
 description: Explore and articulate phase vision before planning
 argument-hint: "<phase-number>"
 allowed-tools: [Read, Write, AskUserQuestion]
@@ -12,7 +12,7 @@ Facilitate vision discussion for a specific phase and create context handoff.
 </objective>
 
 <execution_context>
-@~/.claude/orbit-framework/workflows/discuss-phase.md
+@~/.claude/orbit-framework/workflows/cocreate.md
 </execution_context>
 
 <context>
@@ -24,7 +24,7 @@ Phase number: $ARGUMENTS (required)
 </context>
 
 <process>
-Follow workflow: @~/.claude/orbit-framework/workflows/discuss-phase.md
+Follow workflow: @~/.claude/orbit-framework/workflows/cocreate.md
 </process>
 
 <success_criteria>

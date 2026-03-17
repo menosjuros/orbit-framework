@@ -45,11 +45,11 @@ Every unit of work follows this cycle:
 
 | Category | Commands |
 |----------|----------|
-| Core Loop | observe, refine, build, integrate, test, help, status |
+| Core Loop | refine, build, integrate, test, help, status |
 | Session | pause, resume, progress, handoff |
 | Roadmap | add-phase, remove-phase |
-| Milestone | milestone, complete-milestone, discuss-milestone |
-| Pre-Planning | discuss, assumptions, discover, consider-issues |
+| Milestone | milestone, complete-milestone, cocreate-milestone |
+| Pre-Planning | cocreate, assumptions, observe, consider-issues |
 | Research | research, research-phase |
 | Specialized | flows, config, map-codebase |
 | Quality | test, plan-fix |
@@ -228,28 +228,28 @@ Usage: `/orbit:complete-milestone v0.3`
 
 ---
 
-### `/orbit:discuss-milestone`
+### `/orbit:cocreate-milestone`
 Explore and articulate vision before starting a milestone.
 
 - Conversational exploration of goals
 - Creates milestone context document
 - Prepares for `/orbit:milestone`
 
-Usage: `/orbit:discuss-milestone`
+Usage: `/orbit:cocreate-milestone`
 
 ---
 
 ## Pre-Planning Commands
 
-### `/orbit:discuss <phase>`
+### `/orbit:cocreate <phase>`
 Articulate vision and explore approach before planning.
 
 - Conversational discussion of phase goals
 - Creates CONTEXT.md capturing vision
 - Prepares for `/orbit:refine`
 
-Usage: `/orbit:discuss 3`
-Usage: `/orbit:discuss "authentication layer"`
+Usage: `/orbit:cocreate 3`
+Usage: `/orbit:cocreate "authentication layer"`
 
 ---
 
@@ -265,11 +265,11 @@ Usage: `/orbit:assumptions 3`
 ---
 
 ### `/orbit:observe <topic>`
-Research technical options before planning a phase.
+Research technical options and make decisions before planning a phase.
 
-- Explores codebase for relevant patterns
-- Documents findings for planning reference
-- Lightweight alternative to full research
+- Explores options, libraries, and architecture approaches
+- Compares alternatives with pros/cons
+- Produces OBSERVE.md with recommendation and confidence level
 
 Usage: `/orbit:observe "authentication patterns"`
 
@@ -456,7 +456,7 @@ Completion checks
 
 **Pre-planning exploration:**
 ```
-/orbit:discuss 3 → /orbit:assumptions 3 → /orbit:research "topic" → /orbit:refine 3
+/orbit:cocreate 3 → /orbit:assumptions 3 → /orbit:research "topic" → /orbit:refine 3
 ```
 
 ## Key Principles
