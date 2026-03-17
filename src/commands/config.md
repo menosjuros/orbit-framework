@@ -48,7 +48,13 @@ Available integrations:
 [1] SonarQube - Code quality scanning
     Status: [enabled/disabled/not configured]
 
-[2] Done - save and exit
+[2] Playwright CLI E2E - Browser-based acceptance testing
+    Status: [enabled/disabled/not configured]
+
+[3] Agent Teams - Parallel research and review
+    Status: [enabled/disabled] (requires CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1)
+
+[4] Done - save and exit
 ```
 
 **If user selects SonarQube:**

@@ -150,7 +150,53 @@ Use these to align before writing a single line of plan:
 /orbit:integrate   # close the loop
 ```
 
-**`/orbit:test`** — Guides manual acceptance testing against the criteria defined in REFINE. Structured verification: each AC is checked, failures are logged. No test, no done.
+**`/orbit:test`** — Auto-detects the project's test runner (Jest, Vitest, Pytest, Go test, Cargo), writes integration tests for any ACs without coverage, runs them, and maps results to AC-1, AC-2... Falls back to guided manual UAT if no test runner is found.
+
+Flags:
+- `--e2e` — also run Playwright CLI browser tests (requires setup below)
+- `--manual` — skip auto-detection, go straight to manual UAT
+
+---
+
+### E2E testing with Playwright CLI
+
+ORBIT integrates with [Playwright CLI](https://github.com/microsoft/playwright-cli) — an agent-optimized browser automation tool built for coding agents like Claude Code.
+
+#### Install
+
+```bash
+npm install -g @playwright/cli@latest
+playwright-cli install --skills
+```
+
+#### Enable in ORBIT
+
+```
+/orbit:enable-e2e
+```
+
+This installs Playwright CLI (if not already installed), installs your chosen browser, and configures ORBIT to run E2E tests by default on every `/orbit:test`.
+
+Once enabled, set your app URL in `.orbit/config.md`:
+
+```yaml
+e2e:
+  enabled: true
+  runner: playwright-cli
+  browser: chromium
+  default: true
+  base_url: "http://localhost:3000"
+```
+
+#### How it works
+
+When `default: true` or `--e2e` is passed:
+1. Integration tests run first (native test runner)
+2. After integration tests pass, Playwright CLI navigates to `base_url`
+3. Claude writes and runs browser scenarios for each user-facing AC
+4. Results mapped to ACs — E2E failures are **warnings** (not blockers), integration test failures **block** INTEGRATE
+
+> E2E tests are intentionally non-blocking because browser tests are inherently flakier than integration tests. Failures are logged and routed to `/orbit:plan-fix`.
 
 ---
 

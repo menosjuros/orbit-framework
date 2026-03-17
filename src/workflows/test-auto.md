@@ -146,20 +146,47 @@ For each FAIL:
 </step>
 
 <step name="handle_e2e_optional">
-**If --e2e flag and Playwright available:**
+**E2E with Playwright CLI (--e2e flag or e2e.default: true in config):**
 
-After integration tests pass:
+Check config and flag:
+```bash
+# Check if enabled by default in config
+grep -A3 "^e2e:" .orbit/config.md 2>/dev/null | grep "default: true"
 
-1. Write a minimal Playwright test covering the most critical user-facing AC:
+# Check if playwright-cli is installed
+playwright-cli --version 2>/dev/null || echo "NOT_INSTALLED"
+```
+
+If not installed:
+```
+Playwright CLI not installed. Run /orbit:enable-e2e to set it up.
+Continuing with integration tests only.
+```
+
+If installed, after integration tests pass:
+
+1. Read `base_url` from `.orbit/config.md` (e2e.base_url)
+   If empty, ask user: "What is your app's base URL? (e.g. http://localhost:3000)"
+
+2. For each user-facing AC, write a minimal Playwright CLI test:
    ```bash
-   # Write to tests/e2e/ or playwright/
-   npx playwright test --reporter=line
+   # Tests go in tests/e2e/ or playwright/ (match project convention)
+   # Use playwright-cli snapshot to inspect the page structure first:
+   playwright-cli goto <base_url>
+   playwright-cli snapshot
+   # Then write tests based on what's found
    ```
 
-2. Map Playwright results to the relevant ACs.
+3. Run E2E tests via playwright-cli:
+   ```bash
+   playwright-cli goto <base_url>
+   # Execute the scenario steps for each AC
+   playwright-cli screenshot  # capture evidence
+   ```
 
-3. If Playwright tests fail, log as issues but do not block INTEGRATE.
-   E2E failures are warnings, not blockers (flakiness is real).
+4. Map results to ACs. E2E failures are **warnings**, not blockers —
+   log them as issues in UAT file but do not block INTEGRATE.
+   Flakiness is real; integration test failures block, E2E failures warn.
 </step>
 
 <step name="report_and_route">
