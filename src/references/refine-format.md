@@ -2,15 +2,15 @@
 
 ## Purpose
 
-LOOP.md IS the executable prompt. It contains everything needed to execute a project: objective, context, acceptance criteria, tasks, boundaries, verification, and output specification.
+REFINE.md IS the executable prompt. It contains everything needed to execute a project: objective, context, acceptance criteria, tasks, boundaries, verification, and output specification.
 
-**Core principle:** A refine is Claude-executable when Claude can read the LOOP.md and immediately start implementing without asking clarifying questions.
+**Core principle:** A refine is Claude-executable when Claude can read the REFINE.md and immediately start implementing without asking clarifying questions.
 
 If Claude has to guess, interpret, or make assumptions - the task is too vague.
 
 ## Frontmatter
 
-Every LOOP.md starts with YAML frontmatter:
+Every REFINE.md starts with YAML frontmatter:
 
 ```yaml
 ---

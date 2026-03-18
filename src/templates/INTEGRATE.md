@@ -197,7 +197,7 @@ Or: "None"
 The one-liner should tell someone what actually shipped.
 
 ### Acceptance Criteria Results
-**Purpose:** Verify all AC from LOOP.md were met.
+**Purpose:** Verify all AC from REFINE.md were met.
 **Contains:** Each AC with pass/fail status and notes.
 **Requirement:** All must pass for refine to be complete.
 

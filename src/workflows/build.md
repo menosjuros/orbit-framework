@@ -1,9 +1,9 @@
 <purpose>
-Execute an approved LOOP.md by running tasks in order, verifying each, handling checkpoints, and recording results for INTEGRATE phase reconciliation.
+Execute an approved REFINE.md by running tasks in order, verifying each, handling checkpoints, and recording results for INTEGRATE phase reconciliation.
 </purpose>
 
 <when_to_use>
-- User has approved a LOOP.md (explicit approval required)
+- User has approved a REFINE.md (explicit approval required)
 - STATE.md shows loop position at REFINE complete, ready for BUILD
 - No unresolved blockers from planning project
 </when_to_use>
@@ -16,7 +16,7 @@ Next phase:  INTEGRATE (after execution completes)
 
 <required_reading>
 @.orbit/STATE.md
-@.orbit/projects/{project}/{refine}-LOOP.md
+@.orbit/projects/{project}/{refine}-REFINE.md
 </required_reading>
 
 <references>
@@ -72,7 +72,7 @@ If this step was skipped and tasks were already executed: log deviation to STATE
 <step name="background_build">
 **Background mode — only available for refines with `autonomous: true`.**
 
-Check LOOP.md frontmatter:
+Check REFINE.md frontmatter:
 ```
 autonomous: true   → background allowed
 autonomous: false  → has checkpoints, cannot run unattended
@@ -119,7 +119,7 @@ as the foreground finalize step, then offer INTEGRATE.
 </step>
 
 <step name="load_plan">
-1. Read the LOOP.md file
+1. Read the REFINE.md file
 2. Parse frontmatter:
    - autonomous: determines checkpoint handling
    - files_modified: track what we'll change
@@ -132,7 +132,7 @@ as the foreground finalize step, then offer INTEGRATE.
 <step name="verify_required_skills" priority="blocking">
 **BLOCKING CHECK: Required skills must be loaded before execution.**
 
-1. Check if LOOP.md has a <skills> section
+1. Check if REFINE.md has a <skills> section
 2. If no <skills> section: proceed (no skill requirements)
 3. If <skills> section exists:
    a. For each skill marked "required":
@@ -271,7 +271,7 @@ Create a build team for refine: [refine-path]
 
 Spawn 2 teammates:
 
-- builder: implement the tasks in LOOP.md in order.
+- builder: implement the tasks in REFINE.md in order.
   For each task: execute <action>, run <verify>, log result.
   After each task completes, post to shared task list: "task-N done: [AC satisfied]"
 
@@ -286,7 +286,7 @@ Spawn 2 teammates:
     - No new dependencies
   Post to task list when each test is written: "test-AC-N written"
 
-Both agents respect LOOP.md boundaries (DO NOT CHANGE sections).
+Both agents respect REFINE.md boundaries (DO NOT CHANGE sections).
 Builder blocks on checkpoints — test-writer continues working on other ACs.
 ```
 
@@ -376,7 +376,7 @@ After all tasks attempted:
 </process>
 
 <output>
-- Modified files as specified in LOOP.md
+- Modified files as specified in REFINE.md
 - Execution log (mental, for INTEGRATE)
 - STATE.md updated with BUILD complete
 </output>
@@ -409,9 +409,9 @@ Do NOT start BUILD without explicit user approval of the refine.
 **Skipping check_test_writer:**
 Do NOT jump directly to task execution without checking test_writer config first. With `test_writer: true` + `agent_teams: true`, the correct mode is parallel team build — skipping this step silently drops the test-writing behavior. Always run `check_test_writer` before any task. If already skipped, log the deviation and write tests manually post-build.
 
-**LOOP.md created before test_writer feature existed:**
-If the REFINE refine was approved in a prior ORBIT version that lacked `check_test_writer`, the LOOP.md will not reference this step — the build executes as if test writing doesn't exist, even with `test_writer: true` in config. Detection: config has test_writer enabled but no tests were written during build.
-Mitigation: After completing build, check config → if `test_writer: true`, write tests manually for each AC before INTEGRATE. Log to STATE.md: `| [date]: LOOP.md pre-dates test_writer feature — tests written manually post-build | Project [N] | All ACs covered |`
+**REFINE.md created before test_writer feature existed:**
+If the REFINE refine was approved in a prior ORBIT version that lacked `check_test_writer`, the REFINE.md will not reference this step — the build executes as if test writing doesn't exist, even with `test_writer: true` in config. Detection: config has test_writer enabled but no tests were written during build.
+Mitigation: After completing build, check config → if `test_writer: true`, write tests manually for each AC before INTEGRATE. Log to STATE.md: `| [date]: REFINE.md pre-dates test_writer feature — tests written manually post-build | Project [N] | All ACs covered |`
 
 **Skipping verification:**
 Every task MUST have its verify step run. No "it looks right" assumptions.

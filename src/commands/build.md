@@ -6,7 +6,7 @@ allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, AskUserQuestion, Task]
 ---
 
 <objective>
-Execute an approved LOOP.md file, running tasks in order with verification at each step.
+Execute an approved REFINE.md file, running tasks in order with verification at each step.
 
 **When to use:** After REFINE phase complete and refine is approved.
 

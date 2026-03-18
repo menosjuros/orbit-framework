@@ -8,7 +8,7 @@ allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task]
 <model>sonnet</model>
 
 <objective>
-Run an approved LOOP.md as a background agent — execution happens unattended and you are notified on completion.
+Run an approved REFINE.md as a background agent — execution happens unattended and you are notified on completion.
 
 **Requires:** Refine must have `autonomous: true`. Refines with checkpoints must use `/orbit:build` (foreground).
 </objective>

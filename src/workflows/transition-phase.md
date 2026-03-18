@@ -21,7 +21,7 @@ Handle project-level transition after all refines in a project are complete. Evo
 <process>
 
 <step name="verify_phase_completion" priority="first">
-1. Count LOOP.md files in current project directory
+1. Count REFINE.md files in current project directory
 2. Count INTEGRATE.md files in current project directory
 3. **Verification:**
    - If counts match: Project complete

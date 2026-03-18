@@ -36,7 +36,7 @@ When using `<step>` elements within `<process>`:
 </step>
 
 <step name="execute_tasks">
-  For each task in LOOP.md:
+  For each task in REFINE.md:
   1. Execute task action
   2. Run task verification
   3. Record result
@@ -75,7 +75,7 @@ For mode-dependent behavior:
 </if>
 ```
 
-Conditions reference LOOP.md frontmatter or config values.
+Conditions reference REFINE.md frontmatter or config values.
 
 ## Key Principle
 
@@ -91,14 +91,14 @@ Execute an approved REFINE refine by running tasks in order, verifying each, and
 </purpose>
 
 <when_to_use>
-- User has approved a LOOP.md
+- User has approved a REFINE.md
 - STATE.md shows loop position at REFINE (ready for BUILD)
 - No blocking checkpoints remain unresolved
 </when_to_use>
 
 <required_reading>
 @.orbit/STATE.md
-@.orbit/projects/{project}/{refine}-LOOP.md
+@.orbit/projects/{project}/{refine}-REFINE.md
 </required_reading>
 
 <loop_context>
@@ -111,12 +111,12 @@ Next project:  INTEGRATE (after execution completes)
 
 <step name="validate_preconditions" priority="first">
   1. Read STATE.md, confirm loop position
-  2. Read LOOP.md, confirm autonomous flag
+  2. Read REFINE.md, confirm autonomous flag
   3. If autonomous=false and checkpoints exist, warn user
 </step>
 
 <step name="execute_tasks">
-  For each <task> in LOOP.md <tasks> section:
+  For each <task> in REFINE.md <tasks> section:
   1. Log task start
   2. Execute <action> content
   3. Run <verify> command

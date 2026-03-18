@@ -76,7 +76,7 @@ Usage: `/orbit:init`
 Enter REFINE phase - create an executable refine.
 
 - Reads current state from STATE.md
-- Creates LOOP.md with tasks, acceptance criteria, boundaries
+- Creates REFINE.md with tasks, acceptance criteria, boundaries
 - Populates skills section from SPECIAL-FLOWS.md (if configured)
 - Updates loop position
 
@@ -86,7 +86,7 @@ Usage: `/orbit:refine 3` (specific project)
 ---
 
 ### `/orbit:build [refine-path]`
-Execute an approved LOOP.md file.
+Execute an approved REFINE.md file.
 
 - **Blocks if required skills not loaded** (from SPECIAL-FLOWS.md)
 - Validates refine exists and hasn't been executed
@@ -95,7 +95,7 @@ Execute an approved LOOP.md file.
 - Reports completion and prompts for INTEGRATE
 
 Usage: `/orbit:build`
-Usage: `/orbit:build .orbit/projects/01-foundation/01-01-LOOP.md`
+Usage: `/orbit:build .orbit/projects/01-foundation/01-01-REFINE.md`
 
 ---
 
@@ -109,7 +109,7 @@ Reconcile refine vs actual and close the loop.
 - **Required** - never skip this step
 
 Usage: `/orbit:integrate`
-Usage: `/orbit:integrate .orbit/projects/01-foundation/01-01-LOOP.md`
+Usage: `/orbit:integrate .orbit/projects/01-foundation/01-01-REFINE.md`
 
 ---
 
@@ -384,14 +384,14 @@ Usage: `/orbit:refine-fix`
 ├── MILESTONES.md        # Completed milestone archive
 └── projects/
     ├── 01-foundation/
-    │   ├── 01-01-LOOP.md
+    │   ├── 01-01-REFINE.md
     │   └── 01-01-INTEGRATE.md
     └── 02-features/
-        ├── 02-01-LOOP.md
+        ├── 02-01-REFINE.md
         └── 02-01-INTEGRATE.md
 ```
 
-## LOOP.md Structure
+## REFINE.md Structure
 
 ```markdown
 ---

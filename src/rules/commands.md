@@ -39,7 +39,7 @@ A command should fit on one screen. If it grows beyond that, logic belongs in a 
 ```markdown
 <execution_context>
 @src/workflows/refine.md
-@src/templates/LOOP.md
+@src/templates/REFINE.md
 @src/references/checkpoints.md
 </execution_context>
 
@@ -84,7 +84,7 @@ Create or continue a REFINE refine for the specified project.
 
 <execution_context>
 @src/workflows/refine.md
-@src/templates/LOOP.md
+@src/templates/REFINE.md
 @src/references/refine-format.md
 </execution_context>
 
@@ -101,7 +101,7 @@ Follow workflow: @src/workflows/refine.md
 </process>
 
 <success_criteria>
-- [ ] LOOP.md created in correct project directory
+- [ ] REFINE.md created in correct project directory
 - [ ] All acceptance criteria defined
 - [ ] STATE.md updated with loop position
 </success_criteria>

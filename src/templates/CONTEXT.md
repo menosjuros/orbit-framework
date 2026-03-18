@@ -84,5 +84,5 @@ Template for `.orbit/projects/{NN}-{name}/CONTEXT.md` - project discussion conte
 |------|--------------|
 | ROADMAP.md | Source of project definition |
 | CONTEXT.md | Discussion output (this file) |
-| LOOP.md | Consumes context for planning |
+| REFINE.md | Consumes context for planning |
 | RESEARCH.md | May inform context or result from questions |

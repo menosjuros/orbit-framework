@@ -8,7 +8,7 @@ allowed-tools: [Read, Bash, Glob, Grep, Edit, Write, AskUserQuestion, Task]
 <model>sonnet</model>
 
 <objective>
-Validate that what was built satisfies the acceptance criteria defined in LOOP.md.
+Validate that what was built satisfies the acceptance criteria defined in REFINE.md.
 
 **Primary mode:** Auto-detect the project's test runner, write integration tests for any ACs without coverage, run them, and map results back to AC-1, AC-2, etc.
 
@@ -43,7 +43,7 @@ Scope: $ARGUMENTS (optional)
 </process>
 
 <success_criteria>
-- [ ] Test scope identified (from LOOP.md or INTEGRATE.md)
+- [ ] Test scope identified (from REFINE.md or INTEGRATE.md)
 - [ ] ACs extracted for validation
 - [ ] Test runner detected (or manual mode triggered)
 - [ ] Integration tests written for uncovered ACs

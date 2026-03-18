@@ -15,7 +15,7 @@ The git log should read like a changelog of what shipped, not a diary of plannin
 | Event                   | Commit? | Why                                              |
 | ----------------------- | ------- | ------------------------------------------------ |
 | PROJECT + ROADMAP init  | YES     | Project initialization                           |
-| LOOP.md created           | NO      | Intermediate - commit with refine completion       |
+| REFINE.md created           | NO      | Intermediate - commit with refine completion       |
 | Research notes          | NO      | Intermediate                                     |
 | **Task completed**      | YES     | Atomic unit of work (1 commit per task)          |
 | **Refine completed**      | YES     | Metadata commit (SUMMARY + STATE + ROADMAP)      |
@@ -163,7 +163,7 @@ Each refine produces 2-4 commits (tasks + metadata). Clear, granular, bisectable
 <anti_patterns>
 
 **Still don't commit (intermediate artifacts):**
-- LOOP.md creation (commit with refine completion)
+- REFINE.md creation (commit with refine completion)
 - Research notes
 - Minor planning tweaks
 - "Fixed typo in roadmap"

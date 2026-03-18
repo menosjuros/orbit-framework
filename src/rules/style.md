@@ -35,7 +35,7 @@ Exception: INTEGRATE.md deviations section, git commits (their purpose IS tracki
 | Bash variables | CAPS_UNDERSCORES | `PHASE_ARG` |
 | Type attributes | colon separator | `type="checkpoint:human-verify"` |
 | Phase directories | `NN-kebab-name` | `02-rules-layer` |
-| Refine files | `NN-NN-LOOP.md` | `02-01-LOOP.md` |
+| Refine files | `NN-NN-REFINE.md` | `02-01-REFINE.md` |
 
 ## XML Conventions
 
@@ -75,7 +75,7 @@ Enable secure user access
 ```markdown
 # Static (always load)
 @src/workflows/refine.md
-@src/templates/LOOP.md
+@src/templates/REFINE.md
 
 # Project-relative (dynamic)
 @.orbit/PROJECT.md
@@ -91,7 +91,7 @@ ORBIT uses explicit loop phase names:
 
 | Phase | Purpose | Artifacts |
 |-------|---------|-----------|
-| REFINE | Define work, acceptance criteria | LOOP.md |
+| REFINE | Define work, acceptance criteria | REFINE.md |
 | BUILD | Execute approved refine | Code changes |
 | INTEGRATE | Reconcile refine vs actual | INTEGRATE.md, STATE.md updates |
 

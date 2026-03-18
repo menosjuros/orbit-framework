@@ -313,7 +313,7 @@ STATE.md updated ✓
 - Project must exist
 - Project must be "Not started"
 - Cannot remove last project in milestone
-- Cannot remove project with artifacts (LOOP.md, INTEGRATE.md)
+- Cannot remove project with artifacts (REFINE.md, INTEGRATE.md)
 </validation_rules>
 
 <error_handling>

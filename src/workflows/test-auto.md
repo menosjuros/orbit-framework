@@ -43,10 +43,10 @@ ls Makefile 2>/dev/null && grep -E "^test:" Makefile
 <step name="identify_scope">
 **Determine what to test:**
 
-If $ARGUMENTS provided: find corresponding LOOP.md and INTEGRATE.md
-If not: use most recently modified LOOP.md
+If $ARGUMENTS provided: find corresponding REFINE.md and INTEGRATE.md
+If not: use most recently modified REFINE.md
 
-Read LOOP.md to extract:
+Read REFINE.md to extract:
 - All acceptance criteria (AC-1, AC-2, ...)
 - Files created/modified (from INTEGRATE.md if exists)
 - Boundaries (what was NOT changed)
@@ -76,7 +76,7 @@ Falling back to manual UAT.
 
 Tests should already exist — they are written during BUILD alongside the implementation.
 
-For each AC in the LOOP.md, confirm a test exists:
+For each AC in the REFINE.md, confirm a test exists:
 ```bash
 grep -r "AC-[0-9]" tests/ spec/ __tests__/ test/ 2>/dev/null
 ```
@@ -207,7 +207,7 @@ Human verification runs for every AC, independent of automated results. An AC th
 
 <success_criteria>
 - [ ] Test runner detected (or manual fallback triggered)
-- [ ] ACs extracted from LOOP.md
+- [ ] ACs extracted from REFINE.md
 - [ ] Existing test coverage mapped
 - [ ] Missing tests written (one per uncovered AC)
 - [ ] Tests executed

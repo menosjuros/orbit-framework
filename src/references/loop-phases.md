@@ -22,7 +22,7 @@ Explain the semantics of ORBIT's three loop phases: REFINE, BUILD, INTEGRATE. Ev
 **Purpose:** Define what will be built, how it will be verified, and what's out of scope.
 
 **Artifacts Created:**
-- `{project}-{refine}-LOOP.md` in `.orbit/projects/{project-name}/`
+- `{project}-{refine}-REFINE.md` in `.orbit/projects/{project-name}/`
 
 **Activities:**
 1. Analyze requirements and context
@@ -38,7 +38,7 @@ Explain the semantics of ORBIT's three loop phases: REFINE, BUILD, INTEGRATE. Ev
 - ROADMAP indicates this project is next
 
 **Exit Condition:**
-- LOOP.md created with all required sections
+- REFINE.md created with all required sections
 - User has approved the refine
 - STATE.md updated to show "ready for BUILD"
 
@@ -53,11 +53,11 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 **Purpose:** Execute the approved refine by completing tasks in order, verifying each.
 
 **Artifacts Created:**
-- Code/files specified in LOOP.md
+- Code/files specified in REFINE.md
 - BUILD-LOG (optional, for complex refines)
 
 **Activities:**
-1. Read LOOP.md to load task definitions
+1. Read REFINE.md to load task definitions
 2. For each task:
    - Execute the action
    - Run verification
@@ -67,7 +67,7 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 4. Track deviations from refine
 
 **Entry Condition:**
-- LOOP.md exists and is approved
+- REFINE.md exists and is approved
 - STATE.md shows loop position at REFINE complete
 
 **Exit Condition:**
@@ -91,7 +91,7 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 - Updated `ROADMAP.md` (if project complete)
 
 **Activities:**
-1. Compare LOOP.md tasks to actual execution
+1. Compare REFINE.md tasks to actual execution
 2. Document what was built (files, lines)
 3. Record acceptance criteria results (PASS/FAIL)
 4. Note any deviations and why
@@ -123,7 +123,7 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 "Let me just quickly implement this without a refine"
 
 # GOOD
-"Let me create a LOOP.md first, even for small work"
+"Let me create a REFINE.md first, even for small work"
 ```
 Why: No REFINE = no acceptance criteria = no way to verify completion.
 
@@ -153,7 +153,7 @@ Why: No INTEGRATE = no record of what was built = lost traceability.
 Trigger: User approves refine (explicit signal)
 
 Validation:
-- [ ] LOOP.md has all required sections
+- [ ] REFINE.md has all required sections
 - [ ] Acceptance criteria are testable
 - [ ] Tasks have Files, Action, Verify, Done
 - [ ] Boundaries are clear

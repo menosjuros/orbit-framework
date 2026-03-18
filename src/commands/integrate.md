@@ -24,13 +24,13 @@ Creates INTEGRATE.md documenting what was built, decisions made, and any deferre
 Refine path: $ARGUMENTS
 
 @.orbit/STATE.md
-@{refine-path} (the LOOP.md being unified)
+@{refine-path} (the REFINE.md being unified)
 </context>
 
 <process>
 
 <step name="validate_preconditions">
-1. Confirm LOOP.md exists at $ARGUMENTS path
+1. Confirm REFINE.md exists at $ARGUMENTS path
 2. Confirm BUILD phase was executed (tasks completed)
 3. If INTEGRATE.md already exists: "Loop already closed. SUMMARY: {path}"
 </step>
@@ -46,7 +46,7 @@ Compare refine to actual:
 </step>
 
 <step name="create_summary">
-Create INTEGRATE.md in same directory as LOOP.md:
+Create INTEGRATE.md in same directory as REFINE.md:
 - Document what was built
 - Record acceptance criteria results
 - Note any deferred issues

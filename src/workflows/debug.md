@@ -208,7 +208,7 @@ Update Resolution.fix with what was changed and why.
 Update Resolution.files_changed with modified files.
 
 **Complex fixes:** If fix requires significant code changes:
-- Create a dedicated LOOP.md for the fix
+- Create a dedicated REFINE.md for the fix
 - Reference debug file in refine context
 - Debug file stays in "fixing" until refine completes
 
