@@ -150,74 +150,54 @@ Use these to align before writing a single line of plan:
 /orbit:integrate   # close the loop
 ```
 
-**`/orbit:test`** — Runs integration tests and maps results to AC-1, AC-2... Auto-detects the project's test runner (Jest, Vitest, Pytest, Go test, Cargo). Falls back to guided manual UAT if no test runner is found.
-
-When **parallel tests** are enabled, tests are written during BUILD alongside the implementation — one per AC. By the time you reach TEST, they already exist and just need to run.
+**`/orbit:test`** — By default runs guided manual UAT: Claude generates a checklist from the acceptance criteria, you test and report pass/fail. No automation, no dependencies.
 
 Flags:
-- `--e2e` — also run Playwright CLI browser tests (requires setup below)
-- `--manual` — skip auto-detection, go straight to manual UAT
+- `--e2e` — also run Playwright CLI browser tests (requires E2E enabled in config)
+- `--manual` — force manual UAT even if automation is configured
 
 ---
 
-### E2E testing with Playwright CLI
+### Configuration
 
-ORBIT integrates with [Playwright CLI](https://github.com/microsoft/playwright-cli) — an agent-optimized browser automation tool built for coding agents like Claude Code.
+All optional features are **disabled by default**. Enable via:
 
-#### Install
-
-```bash
-npm install -g @playwright/cli@latest
-playwright-cli install --skills
+```
+/orbit:config
 ```
 
-#### Enable in ORBIT
+Available integrations:
+
+| Integration | What it does | Default |
+|-------------|-------------|---------|
+| **Agent Teams** | Parallel research on `/orbit:observe`, code review on `/orbit:integrate` | OFF |
+| **Test Writer** | Writes integration tests during `/orbit:build`, one per AC | OFF |
+| **E2E (Playwright CLI)** | Browser-based tests on `/orbit:test` | OFF |
+
+When **Test Writer** is enabled:
+- Agent Teams also ON → builder + test-writer run simultaneously
+- Agent Teams OFF → test written sequentially after each task
+
+When **E2E** is enabled:
+- Integration tests run first
+- Then Playwright CLI navigates `base_url` and runs browser scenarios per AC
+- E2E failures are **warnings** (not blockers) — integration failures **block** INTEGRATE
+
+#### Enable E2E
 
 ```
 /orbit:enable-e2e
 ```
 
-This installs Playwright CLI (if not already installed), installs your chosen browser, and configures ORBIT to run E2E tests by default on every `/orbit:test`.
+Installs `@playwright/cli`, picks your browser, and sets the app URL. Then toggle on/off anytime via `/orbit:config`.
 
-Once enabled, set your app URL in `.orbit/config.md`:
+#### Enable Agent Teams
 
-```yaml
-e2e:
-  enabled: true
-  runner: playwright-cli
-  browser: chromium
-  default: true
-  base_url: "http://localhost:3000"
+```
+/orbit:config → Agent Teams → Enable
 ```
 
-#### Parallel Tests (agent teams)
-
-When enabled, BUILD spawns two agents simultaneously:
-- **builder** — implements the tasks in LOOP.md
-- **test-writer** — writes integration tests for each AC as the builder completes tasks
-
-Both share a task list. Test-writer watches for build completions and writes the corresponding test immediately. By the time `/orbit:test` runs, all tests already exist.
-
-To enable, add to `.orbit/config.md`:
-
-```yaml
-parallel_tests:
-  enabled: true   # requires CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
-```
-
-Both features are **disabled by default**. Enable via `/orbit:config` or edit `.orbit/config.md` directly.
-
----
-
-#### How Playwright CLI works
-
-When `default: true` or `--e2e` is passed:
-1. Integration tests run first (native test runner)
-2. After integration tests pass, Playwright CLI navigates to `base_url`
-3. Claude writes and runs browser scenarios for each user-facing AC
-4. Results mapped to ACs — E2E failures are **warnings** (not blockers), integration test failures **block** INTEGRATE
-
-> E2E tests are intentionally non-blocking because browser tests are inherently flakier than integration tests. Failures are logged and routed to `/orbit:plan-fix`.
+Also writes `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` to `.claude/settings.json` automatically. Restart Claude Code after enabling.
 
 ---
 
