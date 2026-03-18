@@ -67,7 +67,7 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 Last session: [YYYY-MM-DD HH:MM]
 Stopped at: [Description of last completed action]
 Next action: [Exactly ONE thing to do next]
-Resume file: [path to most relevant file]
+Resume file: .orbit/projects/[current-project]/HANDOFF-[date].md
 
 ---
 *STATE.md — Updated after every significant action*

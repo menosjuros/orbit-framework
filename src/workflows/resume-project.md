@@ -46,22 +46,14 @@ No multiple options. Prevents decision fatigue. User can redirect if needed.
 <step name="detect_handoffs">
 **Check for handoff files:**
 
-1. Search for handoff files:
+1. Identify active/paused projects from STATE.md Overview
+2. For each active/paused project, check for handoff in its folder:
    ```bash
-   ls -t .orbit/HANDOFF*.md 2>/dev/null | head -5
+   ls -t .orbit/projects/{project}/HANDOFF*.md 2>/dev/null | head -1
    ```
-
-2. If handoff argument provided ($ARGUMENTS):
-   - Use specified handoff path
-   - Validate it exists
-
-3. If no argument but handoffs found:
-   - Use most recent handoff (by modification time)
-   - Note: `.orbit/HANDOFF-{context}.md` is standard pattern
-
-4. Track handoff for lifecycle:
-   - Store path for later archive/delete
-   - Will be consumed after resume proceeds
+3. If handoff argument provided ($ARGUMENTS — e.g. "01" or "auth"):
+   - Resolve to project folder, look for handoff there
+4. Track handoff path for lifecycle (will be archived after resume)
 </step>
 
 <step name="load_state">
@@ -121,7 +113,7 @@ Type the project number or name (e.g., "01" or "auth").
 Wait for user selection. Once selected:
 - Set chosen project as active (`🔵 In Progress`)
 - Set others back to `⏸ Paused` in the Overview
-- Load the corresponding `HANDOFF-{project}-*.md` if it exists
+- Load `.orbit/projects/{project}/HANDOFF-*.md` if it exists
 - Proceed to `determine_single_action` for the chosen project
 </step>
 

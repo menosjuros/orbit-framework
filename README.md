@@ -304,7 +304,7 @@ Group related projects into milestones for larger initiatives:
 .orbit/
 ├── PROJECT.md           # Project context and goals
 ├── ROADMAP.md           # Milestones and project breakdown
-├── STATE.md             # Loop position, session state, decisions
+├── STATE.md             # Global dashboard — all projects overview + current focus
 ├── config.md            # Optional integrations
 ├── SPECIAL-FLOWS.md     # Optional skill requirements per project
 ├── milestones/          # Archived completed milestones
@@ -312,7 +312,8 @@ Group related projects into milestones for larger initiatives:
 └── projects/            # Flat numbering — never restarts at 01
     ├── 01-auth/
     │   ├── 01-01-LOOP.md
-    │   └── 01-01-INTEGRATE.md
+    │   ├── 01-01-INTEGRATE.md
+    │   └── HANDOFF-2026-03-17.md   # Created on /orbit:pause, deleted on complete
     └── 02-dashboard/
         ├── 02-01-LOOP.md
         └── 02-01-INTEGRATE.md

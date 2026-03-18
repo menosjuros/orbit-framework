@@ -51,12 +51,11 @@ Wait for user decision before proceeding.
 </step>
 
 <step name="cleanup_handoffs">
-1. Check for stale handoffs in project directory:
+1. Check for handoffs in the completed project's folder:
    ```bash
    ls .orbit/projects/{current-project}/HANDOFF*.md 2>/dev/null
    ```
-2. If found, delete them — project is complete, handoffs are stale
-3. Note: Active handoffs at `.orbit/` root are preserved
+2. If found, delete them — project is complete, handoffs are no longer needed
 </step>
 
 <step name="evolve_project">

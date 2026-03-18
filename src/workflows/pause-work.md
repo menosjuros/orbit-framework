@@ -53,13 +53,14 @@ If user doesn't provide, summarize from:
 </step>
 
 <step name="create_handoff">
-**Create HANDOFF file — named by project:**
+**Create HANDOFF file — inside the project folder:**
 
 ```bash
-# Generate filename scoped to current project
-PROJECT=$(grep "Project:" .orbit/STATE.md | head -1 | sed 's/.*— //' | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
+# Handoff lives in the current project's directory
+PROJECT_DIR=$(ls -d .orbit/projects/*/ 2>/dev/null | sort | tail -1)  # current project folder
 TIMESTAMP=$(date +%Y-%m-%d)
-HANDOFF_FILE=".orbit/HANDOFF-${PROJECT}-${TIMESTAMP}.md"
+HANDOFF_FILE="${PROJECT_DIR}HANDOFF-${TIMESTAMP}.md"
+# e.g. .orbit/projects/01-auth/HANDOFF-2026-03-17.md
 ```
 
 **Write content (NOT from template, populate directly):**
@@ -157,7 +158,7 @@ Be specific enough for a fresh Claude to understand immediately.
 Last session: [timestamp]
 Stopped at: [what was happening — project + loop position]
 Next action: /orbit:resume — choose which project to continue
-Resume file: .orbit/HANDOFF-[project]-[date].md
+Resume file: .orbit/projects/[project]/HANDOFF-[date].md
 ```
 </step>
 
@@ -226,7 +227,7 @@ This enables transition-phase.md to know the branch strategy when reconciling.
 ORBIT SESSION PAUSED
 ════════════════════════════════════════
 
-Handoff: .orbit/HANDOFF-[project]-[date].md
+Handoff: .orbit/projects/[project]/HANDOFF-[date].md
 
 Project [N] — [Name]
   Status: ⏸ Paused
