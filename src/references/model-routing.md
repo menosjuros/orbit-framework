@@ -28,8 +28,10 @@ Available models (as of Claude 4.x):
 | `/orbit:resume`        | Haiku   | Context restore from file |
 | `/orbit:config`        | Haiku   | Config read/write — purely mechanical |
 | `/orbit:help`          | Haiku   | Static reference lookup |
+| `/orbit:cross-build`   | Sonnet  | Coordination + contract creation — orchestration, not deep planning |
 | Subagents (research)   | Sonnet  | Parallelized research tasks — Opus overkill at scale |
 | Subagents (background) | Sonnet  | Build agents spawned by `/orbit:build-bg` |
+| Receiver agents        | Sonnet  | Spawned by cross-build to run refine+build in linked project |
 
 </routing_table>
 

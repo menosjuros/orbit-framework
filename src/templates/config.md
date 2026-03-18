@@ -61,6 +61,26 @@ Reserved for future use:
 #   coverage_threshold: 80
 ```
 
+## Linked Projects
+
+Cross-project coordination for multi-repo or monorepo setups.
+See `~/.claude/orbit-framework/references/cross-build.md` for full documentation.
+
+```yaml
+linked_projects: {}
+# Example multi-repo:
+#   back:
+#     path: /absolute/path/to/crm-back
+#   agents:
+#     path: /absolute/path/to/crm-agents
+#
+# Example monorepo (relative paths):
+#   back:
+#     path: ../../packages/back
+#   agents:
+#     path: ../../packages/agents
+```
+
 ## Models
 
 Model routing for ORBIT phases. See `~/.claude/orbit-framework/references/model-routing.md` for defaults.
