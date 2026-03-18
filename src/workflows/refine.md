@@ -204,7 +204,10 @@ Required skills will BLOCK build until confirmed loaded.
 
    [1] Approved, run BUILD | [2] Questions first | [3] Pause here
    ```
-4. **Accept quick inputs:** "1", "approved", "yes", "go" → run `/orbit:build [refine-path]`
+4. **Accept quick inputs:**
+   - "1", "approved", "yes", "go" → run `/orbit:build [refine-path]`
+   - "2", "questions" → wait for user questions, then re-offer the 3 options
+   - "3", "pause" → run `/orbit:pause` (triggers pause-work.md: handoff + STATE update + optional commit)
 </step>
 
 </process>
