@@ -87,15 +87,14 @@ Next phase: REFINE (next plan or next phase)
 <step name="review_team_optional">
 **Optional parallel review before closing the loop:**
 
-Check if agent teams are active:
+Check if agent teams are enabled:
 ```bash
-echo "${CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS:-0}"
-grep "agent_teams:" .orbit/config.md 2>/dev/null | grep "enabled: false"
+grep "agent_teams:" .orbit/config.md 2>/dev/null | grep "enabled: true"
 ```
 
-Teams are **on by default** when env var is set — only skip if `agent_teams.enabled: false` in config.
+Teams are **off by default** — only active if `agent_teams.enabled: true` in `.orbit/config.md`.
 
-**If teams active:**
+**If teams enabled:**
 
 Spawn a 3-reviewer team in parallel. Each reviewer has a distinct lens so they don't overlap:
 

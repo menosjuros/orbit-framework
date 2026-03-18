@@ -65,15 +65,15 @@ Output: Verbal confirmation to proceed.
 
 For: Choosing between options, new integration.
 
-**Check if agent teams are active:**
+**Check if agent teams are enabled:**
 ```bash
-echo "${CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS:-0}"
-grep "agent_teams:" .orbit/config.md 2>/dev/null | grep "enabled: false"
+grep "agent_teams:" .orbit/config.md 2>/dev/null | grep "enabled: true"
 ```
 
-Teams are **on by default** when env var is set — only skip if `agent_teams.enabled: false` in config.
+Teams are **off by default** — only active if `agent_teams.enabled: true` in `.orbit/config.md`.
+Enable via `/orbit:config` → Agent Teams → Enable.
 
-**If teams active: spawn research team**
+**If teams enabled: spawn research team**
 
 Create a team with 2-3 researcher teammates, each assigned a different option or perspective. Teammates challenge each other's findings before producing OBSERVE.md.
 

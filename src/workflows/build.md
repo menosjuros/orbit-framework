@@ -30,9 +30,11 @@ Next phase:  INTEGRATE (after execution completes)
 **Check if Test Writer is enabled:**
 
 ```bash
-grep -A2 "test_writer:" .orbit/config.md 2>/dev/null | grep "enabled: true"
-echo "${CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS:-0}"
+grep "test_writer:" .orbit/config.md 2>/dev/null | grep "enabled: true"
+grep "agent_teams:" .orbit/config.md 2>/dev/null | grep "enabled: true"
 ```
+
+Both off by default. Enable via `/orbit:config`.
 
 | Test Writer | Agent Teams | BUILD behavior |
 |-------------|-------------|----------------|

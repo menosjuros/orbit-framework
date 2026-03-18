@@ -61,8 +61,8 @@ Available integrations:
     Status: [enabled/disabled]
     Note: if Agent Teams active, tests written in parallel; otherwise written sequentially
 
-[4] Agent Teams - Parallel research and review
-    Status: [enabled/disabled] (requires CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1)
+[4] Agent Teams - Parallel research and review (default: disabled)
+    Status: [enabled/disabled]
 
 [5] Done - save and exit
 ```
@@ -111,8 +111,9 @@ If disabling: set test_writer.enabled = false.
 **If user selects Agent Teams:**
 
 ```
-Agent Teams — parallel research (observe) and review (integrate)
+Agent Teams — parallel research (observe) and code review (integrate)
 Current: [enabled/disabled]
+Default: disabled
 
 [1] Enable  [2] Disable  [3] Back
 ```
@@ -120,35 +121,22 @@ Current: [enabled/disabled]
 **If enabling:**
 
 1. Set `agent_teams.enabled: true` in `.orbit/config.md`
-
-2. Also set the env var in Claude Code settings so teams actually work.
-   Check if local `.claude/settings.json` exists:
+2. Write `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` to `.claude/settings.json`:
    ```bash
    cat .claude/settings.json 2>/dev/null || echo "{}"
    ```
-   - If `.claude/settings.json` exists: merge `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS: "1"` into the `env` block
-   - If not: create `.claude/settings.json` with:
-     ```json
-     {
-       "env": {
-         "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
-       }
-     }
-     ```
-
+   Merge into `env` block. Create file if it doesn't exist.
 3. Confirm:
    ```
    ✓ Agent Teams enabled
      .orbit/config.md → agent_teams.enabled: true
      .claude/settings.json → CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
-
    Restart Claude Code to activate.
    ```
 
 **If disabling:**
-
 1. Set `agent_teams.enabled: false` in `.orbit/config.md`
-2. Remove `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` from `.claude/settings.json` env block (if present)
+2. Remove `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` from `.claude/settings.json`
 
 **Step 3: Write config**
 
