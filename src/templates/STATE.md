@@ -2,7 +2,7 @@
 
 Template for `.orbit/STATE.md` — the project's living memory.
 
-**Purpose:** Single source of truth for current position, accumulated context, and session continuity.
+**Purpose:** Single source of truth for current position, all-projects overview, and session continuity.
 
 ---
 
@@ -11,28 +11,28 @@ Template for `.orbit/STATE.md` — the project's living memory.
 ```markdown
 # Project State
 
-## Project Reference
+## Projects Overview
 
-See: .orbit/PROJECT.md (updated [YYYY-MM-DD])
+All projects in the current milestone — updated after every loop completion.
 
-**Core value:** [One-liner from PROJECT.md - the ONE thing that matters]
-**Current focus:** [Current milestone and phase name]
+| # | Project | Loops | Status | Loop Position |
+|---|---------|-------|--------|---------------|
+| 01-[name] | [Description] | 0/N | ○ Pending | ○ ○ ○ |
+| 02-[name] | [Description] | 1/N | 🔵 In Progress | ✓ ◉ ○ |
+| 03-[name] | [Description] | N/N | ✅ Complete | ✓ ✓ ✓ |
 
-## Current Position
+**Milestone progress:** [X] of [Y] projects complete
 
-Milestone: [Name] ([version])
-Project: [X] of [Y] ([Project Name])
-Plan: [A] of [B] in current project
-Status: [Ready to plan | Planning | Approved | Building | Integrating | Complete | Blocked]
-Last activity: [YYYY-MM-DD HH:MM] — [What happened]
+---
 
-Progress:
-- Milestone: [░░░░░░░░░░] 0%
-- Project: [░░░░░░░░░░] 0%
+## Current Focus
 
-## Loop Position
+**Project:** [N] — [Name]
+**Plan:** [A] of [B]
+**Status:** [Ready to plan | Planning | Building | Integrating | Complete | Blocked]
+**Last activity:** [YYYY-MM-DD HH:MM] — [What happened]
 
-Current loop state:
+Loop position:
 ```
 REFINE ──▶ BUILD ──▶ INTEGRATE
   ◉        ○        ○     [Planning]
@@ -41,64 +41,32 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
   ✓        ✓        ✓     [Complete - ready for next REFINE]
 ```
 
-## Performance Metrics
-
-**Velocity:**
-- Total plans completed: [N]
-- Average duration: [X] min
-- Total execution time: [X.X] hours
-
-**By Phase:**
-
-| Project | Plans | Total Time | Avg/Plan |
-|---------|-------|------------|----------|
-| 01-[name] | 0/0 | - | - |
-
-**Recent Trend:**
-- Last 5 plans: [durations]
-- Trend: [Improving | Stable | Degrading]
-
-*Updated after each plan completion*
-
 ## Accumulated Context
 
 ### Decisions
 
-Decisions logged via decision-logger. Recent decisions affecting current work:
-
 | Decision | Project | Impact |
 |----------|---------|--------|
-| [Decision summary] | [Project X] | [Ongoing effect] |
+| [Decision summary] | [Project N] | [Ongoing effect] |
 
 ### Deferred Issues
 
-Issues logged but not yet addressed:
-
 | Issue | Origin | Effort | Revisit |
 |-------|--------|--------|---------|
-| [Brief description] | [Phase X] | [S/M/L] | [When to reconsider] |
+| [Brief description] | [Project N] | [S/M/L] | [When to reconsider] |
 
-### Blockers/Concerns
-
-Active blockers affecting progress:
+### Blockers
 
 | Blocker | Impact | Resolution Path |
 |---------|--------|-----------------|
 | [Description] | [What's blocked] | [How to resolve] |
 
-## Boundaries (Active)
-
-Protected elements for current phase:
-
-- [Protected file/pattern from current LOOP.md]
-- [Another protected element]
-
 ## Session Continuity
 
 Last session: [YYYY-MM-DD HH:MM]
 Stopped at: [Description of last completed action]
-Next action: [What to do when resuming]
-Resume context: [Key information needed to continue]
+Next action: [Exactly ONE thing to do next]
+Resume file: [path to most relevant file]
 
 ---
 *STATE.md — Updated after every significant action*
@@ -109,72 +77,78 @@ Resume context: [Key information needed to continue]
 
 ## Section Specifications
 
-### Project Reference
-**Purpose:** Pointer to PROJECT.md for full context.
+### Projects Overview
+**Purpose:** Dashboard of all projects in the milestone — visible at a glance without reading ROADMAP.md.
+
+**Status values:**
+- `○ Pending` — not started
+- `🔵 In Progress` — at least one loop started
+- `✅ Complete` — all loops done, INTEGRATE complete
+
+**Loop Position column** (compact):
+- `○ ○ ○` — not started
+- `◉ ○ ○` — REFINE active
+- `✓ ◉ ○` — BUILD active
+- `✓ ✓ ◉` — INTEGRATE active
+- `✓ ✓ ✓` — loop complete (repeats per loop count)
+
+**Update:** After every INTEGRATE completion and every project transition.
+
+**Row format:**
+```
+| 01-auth | JWT authentication | 2/3 | 🔵 In Progress | ✓ ✓ ✓ / ✓ ✓ ✓ / ✓ ◉ ○ |
+```
+When a project has multiple loops, show each loop's position separated by `/`.
+
+### Current Focus
+**Purpose:** Deep view of the active project — what's happening right now.
+
 **Contains:**
-- Core value (one-liner from PROJECT.md)
-- Current focus (milestone + phase)
-- Last update date (triggers re-read if stale)
+- Project number and name
+- Plan number within project
+- Status and last activity
+- Visual loop position diagram
 
-**Update:** When PROJECT.md changes or milestone shifts.
-
-### Current Position
-**Purpose:** Where we are right now.
-**Contains:**
-- Milestone name and version
-- Project X of Y with name
-- Plan A of B within project
-- Status (planning/applying/unifying/complete/blocked)
-- Last activity timestamp and description
-- Visual progress bars
-
-**Update:** After every project/plan state change.
-
-### Loop Position
-**Purpose:** Visual indicator of ORBIT loop state.
-**States:**
-- Planning: REFINE active, BUILD/INTEGRATE pending
-- Building: REFINE complete, BUILD active, INTEGRATE pending
-- Integrating: REFINE/BUILD complete, INTEGRATE active
-- Complete: Full loop done, ready for next REFINE
-
-**Update:** At each loop project transition.
-
-### Performance Metrics
-**Purpose:** Track velocity for patterns and estimation.
-**Contains:**
-- Aggregate stats (total plans, average duration)
-- Per-phase breakdown
-- Recent trend analysis
-
-**Update:** After each plan completion.
+**Update:** At every loop state change (REFINE → BUILD → INTEGRATE → complete).
 
 ### Accumulated Context
-**Purpose:** Digest of decisions, issues, blockers.
+**Purpose:** Digest of decisions, issues, blockers relevant to current work.
 
-**Decisions:** Recent decisions affecting current work. Full log in decision-logger or PROJECT.md.
+**Decisions:** Keep only 3-5 recent entries. Full log in PROJECT.md.
+**Deferred Issues:** Items logged but not yet addressed.
+**Blockers:** Active obstacles only — remove when resolved.
 
-**Deferred Issues:** Items logged but not addressed. Include effort estimate and revisit trigger.
-
-**Blockers:** Active obstacles requiring resolution.
-
-**Update:** After INTEGRATE phase reconciliation.
-
-### Boundaries (Active)
-**Purpose:** Quick reference to current project protections.
-**Contains:** Protected files/patterns from active LOOP.md.
-
-**Update:** When entering new REFINE project.
+**Update:** After INTEGRATE reconciliation.
 
 ### Session Continuity
-**Purpose:** Enable instant session resumption.
-**Contains:**
-- Last session timestamp
-- What was completed
-- What to do next
-- Key context needed
+**Purpose:** Enable instant resumption — one read, one action.
 
-**Update:** At end of each session or significant pause.
+**Next action:** Must be exactly ONE thing (not a list). If unsure, point to `/orbit:progress`.
+
+**Update:** At end of every session or after `/orbit:pause`.
+
+---
+
+## How the Overview gets populated
+
+**At `/orbit:init`:**
+- Add a row per project defined in ROADMAP.md
+- All rows start as `○ Pending | ○ ○ ○`
+
+**At `/orbit:refine` (plan start):**
+- Update project row: Status → `🔵 In Progress`
+- Update loop position column for active plan
+
+**At `/orbit:build` (tasks running):**
+- Update loop position: `◉ ○ ○` → `✓ ◉ ○`
+
+**At `/orbit:integrate` (loop closes):**
+- Update loop position: `✓ ✓ ◉` → `✓ ✓ ✓`
+- Increment completed loop count: `1/3` → `2/3`
+
+**At project transition (all loops done):**
+- Update project row: Status → `✅ Complete`
+- Update milestone progress counter
 
 ---
 
@@ -182,29 +156,28 @@ Resume context: [Key information needed to continue]
 
 **Target:** Under 100 lines.
 
-STATE.md is a DIGEST, not an archive. If sections grow too large:
-- Keep only 3-5 recent decisions (full log elsewhere)
-- Reference issue tracker instead of listing all issues
-- Keep only active blockers, remove resolved
-- Summarize instead of detail
+STATE.md is a DIGEST, not an archive:
+- Keep only 3-5 recent decisions (full log in PROJECT.md)
+- Keep only active blockers (remove resolved)
+- Projects Overview is compact by design — one row per project
 
-**Goal:** "Read once, know where we are" — if too long, that fails.
+**Goal:** "Read once, know where everything stands."
 
 ---
 
 ## Lifecycle
 
-**Creation:** After ROADMAP.md created (during project init)
-- Reference PROJECT.md (extract core value)
-- Initialize empty sections
-- Set position to "Project 1 ready to plan"
+**Creation:** After ROADMAP.md created (during `/orbit:init`)
+- Build Projects Overview table from ROADMAP.md projects
+- All rows start as Pending
+- Set Current Focus to "Project 1 — Ready to plan"
 
 **Reading:** First step of EVERY workflow
-- Load before planning, applying, or unifying
-- Provides instant context restoration
+- Load before any REFINE, BUILD, or INTEGRATE
 
 **Writing:** After every significant action
-- After REFINE approval: Update status to "Approved"
-- After BUILD completion: Update position, log duration
-- After INTEGRATE: Update decisions, issues, blockers
-- After session end: Update continuity section
+- REFINE start: mark project In Progress, update loop position
+- BUILD complete: update loop position in Overview
+- INTEGRATE: close loop, increment count, update overview row
+- Project transition: mark Complete, update milestone counter
+- Session end: update Session Continuity

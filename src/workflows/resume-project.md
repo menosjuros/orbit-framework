@@ -108,26 +108,26 @@ Based on loop position, determine **exactly ONE** next action:
 </step>
 
 <step name="report_and_route">
-Display to user with ONE next action:
+Display the Projects Overview first, then focus on ONE next action:
 
 ```
 ════════════════════════════════════════
-ORBIT PROJECT RESUMED
+ORBIT RESUMED
 ════════════════════════════════════════
 
-Project: [from PROJECT.md]
-Project: [N] of [M] - [Project Name]
-Plan: [NN-PP] - [plan description]
+Projects Overview:
+┌────────────────────────────────────────────────────────────┐
+│  #   Project              Loops   Status          Position  │
+│  01  [name]               2/3     🔵 In Progress  ✓ ◉ ○    │
+│  02  [name]               0/2     ○ Pending       ○ ○ ○    │
+│  03  [name]               3/3     ✅ Complete      ✓ ✓ ✓    │
+└────────────────────────────────────────────────────────────┘
+Milestone: [X] of [Y] projects complete
 
-Loop Position:
-┌─────────────────────────────────────┐
-│  REFINE ──▶ BUILD ──▶ INTEGRATE          │
-│   [✓/○]    [✓/○]    [✓/○]          │
-└─────────────────────────────────────┘
-
-Last Session: [timestamp]
+────────────────────────────────────────
+Current focus: Project [N] — [Name]
+Plan: [A] of [B]
 Stopped at: [what was happening]
-
 ────────────────────────────────────────
 ▶ NEXT: [single command with path]
   [brief description of what it does]
@@ -137,7 +137,7 @@ Type "yes" to proceed, or provide context for a different action.
 ```
 
 **IMPORTANT:** Do NOT show numbered options (1, 2, 3, 4).
-Show exactly ONE suggested action with the standard ORBIT routing format.
+Show exactly ONE suggested action. The Overview gives full context — the Next action gives direction.
 </step>
 
 </process>

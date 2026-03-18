@@ -145,28 +145,31 @@ After team completes, extract:
 </step>
 
 <step name="update_state">
-1. Update STATE.md:
+Update STATE.md — three sections:
 
-   **Current Position:**
-   - Project: N of M - Complete (or In Progress if more loops)
-   - Plan: complete
-   - Status: Ready for next REFINE
-   - Last activity: timestamp
+**1. Projects Overview table:**
+- Find the current project row
+- Update loop position for this plan: `✓ ✓ ◉` → `✓ ✓ ✓`
+- Increment loop count: `N/M` → `N+1/M`
+- If more loops remain: keep Status as `🔵 In Progress`
+- If last loop: Status → `✅ Complete` (transition-phase handles this)
 
-   **Progress:**
-   - Update milestone percentage
-   - Update phase percentage (100% if complete)
+**2. Current Focus:**
+```
+**Project:** [N] — [Name]
+**Plan:** [A] complete
+**Status:** Ready for next REFINE (or transitioning)
+**Last activity:** [timestamp] — Plan [A] integrated
 
-   **Loop Position:**
-   ```
-   REFINE ──▶ BUILD ──▶ INTEGRATE
-     ✓        ✓        ✓     [Loop complete - ready for next REFINE]
-   ```
+Loop position:
+REFINE ──▶ BUILD ──▶ INTEGRATE
+  ✓        ✓        ✓     [Loop complete - ready for next REFINE]
+```
 
-   **Session Continuity:**
-   - Update stopped at
-   - Update next action
-   - Update resume file (point to SUMMARY)
+**3. Session Continuity:**
+- Stopped at: Plan [A] integrated
+- Next action: `/orbit:refine` for Plan [A+1] (or next project)
+- Resume file: point to the INTEGRATE.md just created
 </step>
 
 <step name="check_phase_completion">

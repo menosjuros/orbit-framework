@@ -112,20 +112,28 @@ Update STATE.md Accumulated Context section:
 </step>
 
 <step name="update_state_for_transition">
-Update STATE.md Current Position:
+**Update STATE.md — two sections:**
 
+**1. Projects Overview table:**
+- Mark completed project row: Status → `✅ Complete`, all loops → `✓ ✓ ✓`
+- Mark next project row: Status → `○ Pending` (will flip to `🔵 In Progress` at REFINE)
+- Update milestone progress counter: `[X+1] of [Y] projects complete`
+
+**2. Current Focus:**
 ```markdown
-## Current Position
+## Current Focus
 
-Project: [N+1] of [total] ([Next project name])
-Plan: Not started
-Status: Ready to plan
-Last activity: [today] — Project [N] complete, transitioned to Project [N+1]
+**Project:** [N+1] — [Next project name]
+**Plan:** Not started
+**Status:** Ready to plan
+**Last activity:** [today] — Project [N] complete, transitioned to [N+1]
 
-Progress: [updated bar based on completed plans]
+Loop position:
+REFINE ──▶ BUILD ──▶ INTEGRATE
+  ○        ○        ○     [Ready to plan]
 ```
 
-Update Session Continuity:
+**3. Session Continuity:**
 ```markdown
 ## Session Continuity
 
