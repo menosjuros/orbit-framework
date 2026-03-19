@@ -1,12 +1,12 @@
 ---
-name: orbit:help
-description: Show available ORBIT commands and usage guide
+name: orbti:help
+description: Show available ORBTI commands and usage guide
 ---
 
 <model>haiku</model>
 
 <objective>
-Display the complete ORBIT command reference.
+Display the complete ORBTI command reference.
 
 Output ONLY the reference content below. Do NOT add:
 
@@ -17,9 +17,9 @@ Output ONLY the reference content below. Do NOT add:
 </objective>
 
 <reference>
-# ORBIT Command Reference
+# ORBTI Command Reference
 
-**ORBIT** (Observe, Refine, Build, Integrate, Test) is a structured AI-assisted development framework for Claude Code.
+**ORBTI** (Observe, Refine, Build, Integrate, Test) is a structured AI-assisted development framework for Claude Code.
 
 ## The Loop
 
@@ -38,10 +38,10 @@ Every unit of work follows this cycle:
 
 ## Quick Start
 
-1. `/orbit:init` - Initialize ORBIT in your project
-2. `/orbit:refine` - Create a refine for your work
-3. `/orbit:build` - Execute the approved refine
-4. `/orbit:integrate` - Close the loop with summary
+1. `/orbti:init` - Initialize ORBTI in your project
+2. `/orbti:refine` - Create a refine for your work
+3. `/orbti:build` - Execute the approved refine
+4. `/orbti:integrate` - Close the loop with summary
 
 ## Commands Overview
 
@@ -53,53 +53,53 @@ Every unit of work follows this cycle:
 | Milestone | milestone, complete-milestone, cocreate-milestone |
 | Pre-Planning | cocreate, assumptions, observe, consider-issues |
 | Research | research, research-phase |
-| Specialized | flows, config, map-codebase |
+| Specialized | skills, config, map-codebase |
 | Quality | test, refine-fix |
 
 ---
 
 ## Core Loop Commands
 
-### `/orbit:init`
-Initialize ORBIT in a project.
+### `/orbti:init`
+Initialize ORBTI in a project.
 
-- Creates `.orbit/` directory structure
+- Creates `.orbti/` directory structure
 - Creates PROJECT.md, STATE.md, ROADMAP.md
 - Prompts for project context and phases
 - Optionally configures integrations (SonarQube, etc.)
 
-Usage: `/orbit:init`
+Usage: `/orbti:init`
 
 ---
 
-### `/orbit:refine [project]`
+### `/orbti:refine [project]`
 Enter REFINE phase - create an executable refine.
 
 - Reads current state from STATE.md
 - Creates REFINE.md with tasks, acceptance criteria, boundaries
-- Populates skills section from SPECIAL-FLOWS.md (if configured)
+- Populates skills section from SKILLS.md (if configured)
 - Updates loop position
 
-Usage: `/orbit:refine` (auto-detects next project)
-Usage: `/orbit:refine 3` (specific project)
+Usage: `/orbti:refine` (auto-detects next project)
+Usage: `/orbti:refine 3` (specific project)
 
 ---
 
-### `/orbit:build [refine-path]`
+### `/orbti:build [refine-path]`
 Execute an approved REFINE.md file.
 
-- **Blocks if required skills not loaded** (from SPECIAL-FLOWS.md)
+- **Blocks if required skills not loaded** (from SKILLS.md)
 - Validates refine exists and hasn't been executed
 - Executes tasks sequentially
 - Handles checkpoints (decision, human-verify, human-action)
 - Reports completion and prompts for INTEGRATE
 
-Usage: `/orbit:build`
-Usage: `/orbit:build .orbit/projects/01-foundation/01-01-REFINE.md`
+Usage: `/orbti:build`
+Usage: `/orbti:build .orbti/projects/01-foundation/01-01-REFINE.md`
 
 ---
 
-### `/orbit:integrate [refine-path]`
+### `/orbti:integrate [refine-path]`
 Reconcile refine vs actual and close the loop.
 
 - Creates INTEGRATE.md documenting what was built
@@ -108,40 +108,40 @@ Reconcile refine vs actual and close the loop.
 - Updates STATE.md with loop closure
 - **Required** - never skip this step
 
-Usage: `/orbit:integrate`
-Usage: `/orbit:integrate .orbit/projects/01-foundation/01-01-REFINE.md`
+Usage: `/orbti:integrate`
+Usage: `/orbti:integrate .orbti/projects/01-foundation/01-01-REFINE.md`
 
 ---
 
-### `/orbit:help`
+### `/orbti:help`
 Show this command reference.
 
-Usage: `/orbit:help`
+Usage: `/orbti:help`
 
 ---
 
-### `/orbit:status` *(deprecated)*
-> Use `/orbit:progress` instead.
+### `/orbti:status` *(deprecated)*
+> Use `/orbti:progress` instead.
 
-Shows current loop position. Deprecated in favor of `/orbit:progress` which provides better routing.
+Shows current loop position. Deprecated in favor of `/orbti:progress` which provides better routing.
 
 ---
 
 ## Session Commands
 
-### `/orbit:pause [reason]`
+### `/orbti:pause [reason]`
 Create handoff file and prepare for session break.
 
 - Creates HANDOFF.md with complete context
 - Updates STATE.md session continuity section
 - Designed for context limits or multi-session work
 
-Usage: `/orbit:pause`
-Usage: `/orbit:pause "switching to other project"`
+Usage: `/orbti:pause`
+Usage: `/orbti:pause "switching to other project"`
 
 ---
 
-### `/orbit:resume [handoff-path]`
+### `/orbti:resume [handoff-path]`
 Restore context from handoff and continue work.
 
 - Reads STATE.md and any HANDOFF files
@@ -149,12 +149,12 @@ Restore context from handoff and continue work.
 - Suggests exactly ONE next action
 - Archives consumed handoffs
 
-Usage: `/orbit:resume`
-Usage: `/orbit:resume .orbit/HANDOFF-context.md`
+Usage: `/orbti:resume`
+Usage: `/orbti:resume .orbti/HANDOFF-context.md`
 
 ---
 
-### `/orbit:progress [context]`
+### `/orbti:progress [context]`
 Smart status with routing - suggests ONE next action.
 
 - Shows milestone and phase progress visually
@@ -163,61 +163,61 @@ Smart status with routing - suggests ONE next action.
 - Accepts optional context to tailor suggestion
 - Warns about context limits
 
-Usage: `/orbit:progress`
-Usage: `/orbit:progress "I only have 30 minutes"`
+Usage: `/orbti:progress`
+Usage: `/orbti:progress "I only have 30 minutes"`
 
 ---
 
-### `/orbit:handoff [context]`
+### `/orbti:handoff [context]`
 Generate comprehensive session handoff document.
 
 - Creates detailed handoff for complex session breaks
 - Captures decisions, progress, blockers, next steps
-- More thorough than `/orbit:pause`
+- More thorough than `/orbti:pause`
 
-Usage: `/orbit:handoff`
-Usage: `/orbit:handoff "phase10-audit"`
+Usage: `/orbti:handoff`
+Usage: `/orbti:handoff "phase10-audit"`
 
 ---
 
 ## Roadmap Commands
 
-### `/orbit:add-project <description>`
+### `/orbti:add-project <description>`
 Append a new project to the roadmap.
 
 - Adds project to end of ROADMAP.md
 - Updates project numbering
 - Records in STATE.md decisions
 
-Usage: `/orbit:add-project "API Authentication Layer"`
+Usage: `/orbti:add-project "API Authentication Layer"`
 
 ---
 
-### `/orbit:remove-project <number>`
+### `/orbti:remove-project <number>`
 Remove a future (not started) project from roadmap.
 
 - Cannot remove completed or in-progress projects
 - Renumbers subsequent projects
 - Updates ROADMAP.md
 
-Usage: `/orbit:remove-project 5`
+Usage: `/orbti:remove-project 5`
 
 ---
 
 ## Milestone Commands
 
-### `/orbit:milestone <name>`
+### `/orbti:milestone <name>`
 Create a new milestone with projects.
 
 - Guides through milestone definition
 - Creates project structure
 - Updates ROADMAP.md with milestone grouping
 
-Usage: `/orbit:milestone "v2.0 API Redesign"`
+Usage: `/orbti:milestone "v2.0 API Redesign"`
 
 ---
 
-### `/orbit:complete-milestone [version]`
+### `/orbti:complete-milestone [version]`
 Archive milestone, tag, and reorganize roadmap.
 
 - Verifies all projects complete
@@ -225,72 +225,72 @@ Archive milestone, tag, and reorganize roadmap.
 - Archives milestone to MILESTONES.md
 - Evolves PROJECT.md for next milestone
 
-Usage: `/orbit:complete-milestone`
-Usage: `/orbit:complete-milestone v0.3`
+Usage: `/orbti:complete-milestone`
+Usage: `/orbti:complete-milestone v0.3`
 
 ---
 
-### `/orbit:cocreate-milestone`
+### `/orbti:cocreate-milestone`
 Explore and articulate vision before starting a milestone.
 
 - Conversational exploration of goals
 - Creates milestone context document
-- Prepares for `/orbit:milestone`
+- Prepares for `/orbti:milestone`
 
-Usage: `/orbit:cocreate-milestone`
+Usage: `/orbti:cocreate-milestone`
 
 ---
 
 ## Pre-Planning Commands
 
-### `/orbit:cocreate <project>`
+### `/orbti:cocreate <project>`
 Articulate vision and explore approach before planning.
 
 - Conversational discussion of project goals
 - Creates CONTEXT.md capturing vision
-- Prepares for `/orbit:refine`
+- Prepares for `/orbti:refine`
 
-Usage: `/orbit:cocreate 3`
-Usage: `/orbit:cocreate "authentication layer"`
+Usage: `/orbti:cocreate 3`
+Usage: `/orbti:cocreate "authentication layer"`
 
 ---
 
-### `/orbit:assumptions <project>`
+### `/orbti:assumptions <project>`
 Surface Claude's assumptions about a project before planning.
 
 - Shows what Claude would do if given free rein
 - Identifies gaps in understanding
 - Prevents misaligned planning
 
-Usage: `/orbit:assumptions 3`
+Usage: `/orbti:assumptions 3`
 
 ---
 
-### `/orbit:observe <topic>`
+### `/orbti:observe <topic>`
 Research technical options and make decisions before planning a phase.
 
 - Explores options, libraries, and architecture approaches
 - Compares alternatives with pros/cons
 - Produces OBSERVE.md with recommendation and confidence level
 
-Usage: `/orbit:observe "authentication patterns"`
+Usage: `/orbti:observe "authentication patterns"`
 
 ---
 
-### `/orbit:consider-issues [source]`
+### `/orbti:consider-issues [source]`
 Review deferred issues with codebase context, triage and route.
 
 - Reads deferred issues from STATE.md or specified source
 - Analyzes with current codebase context
 - Suggests routing: fix now, defer, or close
 
-Usage: `/orbit:consider-issues`
+Usage: `/orbti:consider-issues`
 
 ---
 
 ## Research Commands
 
-### `/orbit:research <topic>`
+### `/orbti:research <topic>`
 Deploy research agents for documentation/web search.
 
 - Spawns subagents for parallel research
@@ -298,84 +298,84 @@ Deploy research agents for documentation/web search.
 - Creates RESEARCH.md with findings
 - Main session vets and reviews results
 
-Usage: `/orbit:research "JWT best practices 2026"`
+Usage: `/orbti:research "JWT best practices 2026"`
 
 ---
 
-### `/orbit:research-phase <number>`
+### `/orbti:research-phase <number>`
 Research unknowns for a project using subagents.
 
 - Identifies unknowns in project scope
 - Deploys research agents
 - Synthesizes findings for planning
 
-Usage: `/orbit:research-phase 4`
+Usage: `/orbti:research-phase 4`
 
 ---
 
 ## Specialized Commands
 
-### `/orbit:flows`
-Configure specialized workflow integrations.
+### `/orbti:skills`
+Configure skill integrations.
 
 - Creates/updates SPECIAL-FLOWS.md
 - Defines required skills per work type
 - Skills are enforced at BUILD time
 
-Usage: `/orbit:flows`
+Usage: `/orbti:skills`
 
 ---
 
-### `/orbit:config`
-View or modify ORBIT configuration.
+### `/orbti:config`
+View or modify ORBTI configuration.
 
 - Shows current config.md settings
 - Allows toggling integrations
 - Manages project-level settings
 
-Usage: `/orbit:config`
+Usage: `/orbti:config`
 
 ---
 
-### `/orbit:map-codebase`
+### `/orbti:map-codebase`
 Generate codebase map for context.
 
 - Creates structured overview of project
 - Identifies key files and patterns
 - Useful for research and planning
 
-Usage: `/orbit:map-codebase`
+Usage: `/orbti:map-codebase`
 
 ---
 
 ## Quality Commands
 
-### `/orbit:test`
+### `/orbti:test`
 Guide manual user acceptance testing of recently built features.
 
 - Generates verification checklist from INTEGRATE.md
 - Guides through manual testing
 - Records verification results
 
-Usage: `/orbit:test`
+Usage: `/orbti:test`
 
 ---
 
-### `/orbit:refine-fix`
+### `/orbti:refine-fix`
 Refine fixes for UAT issues from verify.
 
 - Reads issues identified during verify
 - Creates targeted fix refine
 - Smaller scope than full project refine
 
-Usage: `/orbit:refine-fix`
+Usage: `/orbti:refine-fix`
 
 ---
 
 ## Files & Structure
 
 ```
-.orbit/
+.orbti/
 ├── PROJECT.md           # Project context and value prop
 ├── ROADMAP.md           # Project breakdown and milestones
 ├── STATE.md             # Loop position and session state
@@ -443,22 +443,22 @@ Completion checks
 
 **Starting a new project:**
 ```
-/orbit:init → /orbit:refine → /orbit:build → /orbit:integrate
+/orbti:init → /orbti:refine → /orbti:build → /orbti:integrate
 ```
 
 **Checking where you are:**
 ```
-/orbit:progress
+/orbti:progress
 ```
 
 **Resuming work (new session):**
 ```
-/orbit:resume
+/orbti:resume
 ```
 
 **Pre-planning exploration:**
 ```
-/orbit:cocreate 3 → /orbit:assumptions 3 → /orbit:research "topic" → /orbit:refine 3
+/orbti:cocreate 3 → /orbti:assumptions 3 → /orbti:research "topic" → /orbti:refine 3
 ```
 
 
@@ -473,12 +473,12 @@ Completion checks
 
 ## Getting Help
 
-- Run `/orbit:progress` to see where you are and what to do next
-- Read `.orbit/PROJECT.md` for project context
-- Read `.orbit/STATE.md` for current position
-- Check `.orbit/ROADMAP.md` for project overview
+- Run `/orbti:progress` to see where you are and what to do next
+- Read `.orbti/PROJECT.md` for project context
+- Read `.orbti/STATE.md` for current position
+- Check `.orbti/ROADMAP.md` for project overview
 
 ---
 
-*ORBIT Framework v0.4+ | 26 commands | Last updated: 2026-01-29*
+*ORBTI Framework v0.4+ | 26 commands | Last updated: 2026-01-29*
 </reference>

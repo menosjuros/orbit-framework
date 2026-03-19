@@ -15,13 +15,13 @@ Next phase:  INTEGRATE (after execution completes)
 </loop_context>
 
 <required_reading>
-@.orbit/STATE.md
-@.orbit/projects/{project}/{refine}-REFINE.md
+@.orbti/STATE.md
+@.orbti/projects/{project}/{refine}-REFINE.md
 </required_reading>
 
 <references>
-@~/.claude/orbit-framework/references/checkpoints.md (if refine has checkpoints)
-@~/.claude/orbit-framework/references/loop-phases.md
+@~/.claude/orbti-framework/references/checkpoints.md (if refine has checkpoints)
+@~/.claude/orbti-framework/references/loop-phases.md
 </references>
 
 <process>
@@ -32,11 +32,11 @@ Next phase:  INTEGRATE (after execution completes)
 Check if Test Writer is enabled:
 
 ```bash
-grep "test_writer:" .orbit/config.md 2>/dev/null | grep "enabled: true"
-grep "agent_teams:" .orbit/config.md 2>/dev/null | grep "enabled: true"
+grep "test_writer:" .orbti/config.md 2>/dev/null | grep "enabled: true"
+grep "agent_teams:" .orbti/config.md 2>/dev/null | grep "enabled: true"
 ```
 
-Both off by default. Enable via `/orbit:config`.
+Both off by default. Enable via `/orbti:config`.
 
 | Test Writer | Agent Teams | BUILD behavior |
 |-------------|-------------|----------------|
@@ -65,7 +65,7 @@ If this step was skipped and tasks were already executed: log deviation to STATE
    - Ask: "Refine ready at [path]. Approve refine execution?"
    - Wait for explicit approval before proceeding
 4. Check execution mode:
-   - If invoked via `/orbit:build-bg` → route to `background_build` step
+   - If invoked via `/orbti:build-bg` → route to `background_build` step
    - Otherwise → proceed with foreground execution
 </step>
 
@@ -229,10 +229,10 @@ For each <task> in order:
    ```
 3. Wait for user selection
 4. **Record decision to STATE.md:**
-   - Open `.orbit/STATE.md`
+   - Open `.orbti/STATE.md`
    - Find `### Decisions` under `## Accumulated Context`
    - Add row: `| [date]: [Decision summary] | Project [N] | [Impact on work] |`
-   - Example: `| 2026-01-28: Install in sandbox for testing | Project 1 | Project created in sandbox/box2-orbit-test |`
+   - Example: `| 2026-01-28: Install in sandbox for testing | Project 1 | Project created in sandbox/box2-orbti-test |`
 5. Continue with chosen direction
 
 **If type="checkpoint:human-action":**
@@ -332,45 +332,36 @@ After all tasks attempted:
    - Tasks completed: N of M
    - Failures: list any
    - Deviations: list any
+
 2. **Run tests** (if `test_writer.enabled: true` or tests exist for this refine):
    - Run the project's test command scoped to the files/ACs touched in this build
    - Collect: total tests, passed, failed, duration
+
 3. Update STATE.md:
    - Loop position: REFINE ✓ → BUILD ✓ → INTEGRATE ○
    - Last activity: timestamp and completion status
-4. Report build and test results:
+
+5. Report build results:
    ```
    ════════════════════════════════════════
    BUILD COMPLETE
    ════════════════════════════════════════
    [execution summary]
 
-   TEST RESULTS
-   ────────────────────────────────────────
-   Runner: [vitest/jest/pytest/...]
-   ✓ N passed | ✗ M failed | duration
-
-   [list AC coverage if tests were written during build]
-
-   E2E: [PASS | SKIP — reason]
+   Tests written: [N tests for ACs: AC-1, AC-2, AC-3 | none — test_writer off]
    ────────────────────────────────────────
    ```
-5. **Always proceed to human verification** — automated tests do not substitute human judgment:
-   ```
-   ────────────────────────────────────────
-   ⚠ Testes automatizados não substituem a verificação humana.
-   ────────────────────────────────────────
-   ```
-   → Follow: @~/.claude/orbit-framework/workflows/verify-work.md
 
-6. After human verification completes, offer INTEGRATE:
+6. **Route to TEST:**
    ```
    ---
-   Continue to INTEGRATE?
+   Continue to TEST?
 
-   [1] Yes, run INTEGRATE | [2] Pause here
+   [1] Yes, run /orbit:test | [2] Pause here
    ```
-   **Accept quick inputs:** "1", "yes", "continue", "go" → run `/orbit:integrate [refine-path]`
+   **Accept quick inputs:** "1", "yes", "test", "go" → run `/orbit:test [refine-path]`
+
+   TEST handles: running the written tests, E2E checkpoint, and routing to INTEGRATE.
 </step>
 
 </process>
@@ -410,7 +401,7 @@ Do NOT start BUILD without explicit user approval of the refine.
 Do NOT jump directly to task execution without checking test_writer config first. With `test_writer: true` + `agent_teams: true`, the correct mode is parallel team build — skipping this step silently drops the test-writing behavior. Always run `check_test_writer` before any task. If already skipped, log the deviation and write tests manually post-build.
 
 **REFINE.md created before test_writer feature existed:**
-If the REFINE refine was approved in a prior ORBIT version that lacked `check_test_writer`, the REFINE.md will not reference this step — the build executes as if test writing doesn't exist, even with `test_writer: true` in config. Detection: config has test_writer enabled but no tests were written during build.
+If the REFINE refine was approved in a prior ORBTI version that lacked `check_test_writer`, the REFINE.md will not reference this step — the build executes as if test writing doesn't exist, even with `test_writer: true` in config. Detection: config has test_writer enabled but no tests were written during build.
 Mitigation: After completing build, check config → if `test_writer: true`, write tests manually for each AC before INTEGRATE. Log to STATE.md: `| [date]: REFINE.md pre-dates test_writer feature — tests written manually post-build | Project [N] | All ACs covered |`
 
 **Skipping verification:**

@@ -1,4 +1,4 @@
-# Specialized Flows
+# Skills
 
 **Project:** {{project_name}}
 **Created:** {{timestamp}}

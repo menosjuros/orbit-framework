@@ -57,18 +57,36 @@ Read REFINE.md to extract:
 
 Run the detection commands above.
 
-If `--e2e` flag passed:
-- Check if Playwright CLI is available: `npx playwright --version 2>/dev/null`
-- If available: add E2E test writing to the refine
-- If not available: warn user and continue with integration tests only
+**E2E trigger — check any of these sources (in order):**
+```bash
+# 1. config.md explicit flag
+grep -A3 "^e2e:" .orbti/config.md 2>/dev/null | grep "enabled: true"
 
-If no runner found and no --e2e:
+# 2. SPECIAL-FLOWS declaration of playwright as required
+grep -i "playwright" .orbti/SPECIAL-FLOWS.md 2>/dev/null | grep -i "required"
+```
+
+**Playwright availability — check both variants:**
+```bash
+playwright-cli --version 2>/dev/null || \
+npx playwright --version 2>/dev/null || \
+echo "NOT_INSTALLED"
+```
+
+Use whichever variant is available. Prefer `playwright-cli` if both present.
+
+If E2E triggered by any source above AND playwright available → run `handle_e2e` step.
+If E2E triggered but playwright not available → warn, continue with integration tests only.
+
+If `--e2e` flag passed manually → always attempt E2E regardless of config.
+
+If no runner found and no E2E source:
 ```
 No test runner detected in this project.
 
 Falling back to manual UAT.
 ```
-→ Switch to: @~/.claude/orbit-framework/workflows/verify-work.md
+→ Switch to: @~/.claude/orbti-framework/workflows/verify-work.md
 </step>
 
 <step name="map_acs_to_tests">
@@ -115,52 +133,85 @@ For each FAIL:
 - Categorize: assertion error / exception / timeout / setup failure
 </step>
 
-<step name="handle_e2e_optional">
-**E2E with Playwright CLI (--e2e flag or e2e.default: true in config):**
+<step name="handle_e2e">
+**E2E with Playwright — auto-runs when configured, covers ALL ACs.**
 
-Check config and flag:
+Check config first:
 ```bash
-# Check if enabled by default in config
-grep -A3 "^e2e:" .orbit/config.md 2>/dev/null | grep "default: true"
-
-# Check if playwright-cli is installed
-playwright-cli --version 2>/dev/null || echo "NOT_INSTALLED"
+grep -A3 "^e2e:" .orbti/config.md 2>/dev/null
+npx playwright --version 2>/dev/null || echo "NOT_INSTALLED"
 ```
 
-If not installed:
-```
-Playwright CLI not installed. Run /orbit:enable-e2e to set it up.
-Continuing with integration tests only.
-```
+**Decision matrix:**
 
-If installed, after integration tests pass:
+| `e2e.enabled` | Playwright available | `--e2e` flag | Action |
+|--------------|---------------------|--------------|--------|
+| `true` | yes | any | **Auto-run E2E for ALL ACs** |
+| `true` | no | any | Warn + skip E2E, continue to human verification |
+| `false` | any | `--e2e` | Run E2E for ALL ACs (flag override) |
+| `false` | any | absent | Skip E2E |
 
-1. Read `base_url` from `.orbit/config.md` (e2e.base_url)
-   If empty, ask user: "What is your app's base URL? (e.g. http://localhost:3000)"
+**If E2E should run:**
 
-2. For each user-facing AC, write a minimal Playwright CLI test:
+1. Read `base_url` from `.orbti/config.md` (e2e.base_url).
+   If empty, ask: "What is your app's base URL? (e.g. http://localhost:3000)"
+
+2. Verify app is reachable:
+   ```bash
+   curl -s -o /dev/null -w "%{http_code}" <base_url>
+   ```
+   If not reachable → present `checkpoint:human-action`:
+   ```
+   ════════════════════════════════════════
+   CHECKPOINT: Start the application
+   ════════════════════════════════════════
+   The app must be running at <base_url> for E2E tests.
+   Start it (e.g. npm run dev), then type "ready".
+   ════════════════════════════════════════
+   ```
+
+3. **Check for login automation in SPECIAL-FLOWS:**
+   ```bash
+   grep -A5 "playwright" .orbti/SPECIAL-FLOWS.md 2>/dev/null | grep -i "login\|auth\|credential"
+   ```
+   If login config found → include login steps in each test (navigate to login URL, fill credentials, submit).
+   Credentials come from SPECIAL-FLOWS config — never hardcode in test files; read from env or config.
+
+4. For **each AC** in REFINE.md (not just user-facing ones), write a Playwright test:
    ```bash
    # Tests go in tests/e2e/ or playwright/ (match project convention)
-   # Use playwright-cli snapshot to inspect the page structure first:
-   playwright-cli goto <base_url>
-   playwright-cli snapshot
-   # Then write tests based on what's found
+   # Inspect page structure first using available CLI:
+   playwright-cli goto <base_url> 2>/dev/null || npx playwright open <base_url>
+   playwright-cli snapshot 2>/dev/null
    ```
+   Rules per AC:
+   - One test file per AC, named `ac-N-<slug>.spec.ts`
+   - Test behavior observable via the browser, not internals
+   - No new npm dependencies beyond `@playwright/test`
+   - Take screenshot at end of each test as evidence: `ac-N-<slug>.png`
 
-3. Run E2E tests via playwright-cli:
+5. Run all E2E tests:
    ```bash
-   playwright-cli goto <base_url>
-   # Execute the scenario steps for each AC
-   playwright-cli screenshot  # capture evidence
+   # If playwright-cli available:
+   playwright-cli test tests/e2e/ 2>/dev/null || \
+   npx playwright test tests/e2e/ --reporter=list
    ```
 
-4. Map results to ACs. E2E failures are **warnings**, not blockers —
-   log them as issues in UAT file but do not block INTEGRATE.
-   Flakiness is real; integration test failures block, E2E failures warn.
+6. Map results to ACs:
+   ```
+   AC-1: [description] ........... PASS (screenshot: ac-1.png)
+   AC-2: [description] ........... FAIL — [error]
+   AC-3: [description] ........... PASS (screenshot: ac-3.png)
+   ```
+
+7. E2E failures are **warnings**, not blockers:
+   - Log each failure to `.orbti/projects/XX-name/{refine}-UAT.md`
+   - Do not block INTEGRATE for E2E failures
+   - Integration test failures block; E2E failures warn
 </step>
 
 <step name="report_and_route">
-**Present results and route:**
+**Present results and Playwright checkpoint:**
 
 ```
 ════════════════════════════════════════
@@ -176,21 +227,51 @@ AC-3: ✓ PASS
 
 Tests: [total] | Passed: [N] | Failed: [N]
 
-E2E: [PASS | SKIP — reason]
-
 ════════════════════════════════════════
 Verdict: [ALL PASS | FAILURES FOUND]
 ════════════════════════════════════════
 ```
 
 **If FAILURES FOUND:**
-- Log each failing AC to `.orbit/projects/XX-name/{refine}-UAT.md`
-- Offer: "Run /orbit:refine-fix to address failing tests before integrating"
-- User can override and continue to human verification anyway (with issues logged)
+- Log each failing AC to `.orbti/projects/XX-name/{refine}-UAT.md`
+- Offer: "Run /orbti:refine-fix to address failing tests before integrating"
+- User can override and continue anyway (with issues logged)
 
-**After automated results (regardless of pass/fail):**
+**Playwright checkpoint — always show after test results:**
 
-Always proceed to human verification. Automated tests validate code behavior — they cannot replace human judgment on UX, visual correctness, and real-world usage.
+```
+════════════════════════════════════════
+CHECKPOINT: E2E com Playwright
+════════════════════════════════════════
+
+Quer ativar o agente Playwright para rodar os
+testes E2E cobrindo todos os ACs?
+
+O agente vai:
+1. Navegar até a app em execução
+2. Executar um cenário por AC
+3. Capturar screenshot de evidência
+4. Mapear: AC-1 ✓ / AC-2 ✗
+
+[1] Sim, rodar Playwright agora
+[2] Não, ir direto para INTEGRATE
+════════════════════════════════════════
+```
+
+**If "1" / "sim" / "yes" / "playwright":**
+→ Follow `handle_e2e` step — agent runs Playwright for ALL ACs.
+After E2E completes, offer INTEGRATE:
+```
+Continue to INTEGRATE? [1] Yes | [2] Review issues first
+```
+
+**If "2" / "não" / "skip":**
+→ Offer INTEGRATE directly:
+```
+Continue to INTEGRATE? [1] Yes | [2] Pause here
+```
+
+Accept "1", "yes", "go", "continue" → run `/orbti:integrate [refine-path]`
 
 ```
 ────────────────────────────────────────
@@ -198,7 +279,7 @@ Always proceed to human verification. Automated tests validate code behavior —
 ────────────────────────────────────────
 ```
 
-→ Follow: @~/.claude/orbit-framework/workflows/verify-work.md
+→ Follow: @~/.claude/orbti-framework/workflows/verify-work.md
 
 Human verification runs for every AC, independent of automated results. An AC that passes automated tests can still fail human review — that outcome is valid and must be captured.
 </step>

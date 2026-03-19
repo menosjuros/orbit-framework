@@ -1,10 +1,10 @@
 <purpose>
-Configure specialized skill integrations for a ORBIT project. Discovers available skills, prompts user to select applicable ones, maps skills to work types, and generates .orbit/SPECIAL-FLOWS.md.
+Configure specialized skill integrations for a ORBTI project. Discovers available skills, prompts user to select applicable ones, maps skills to work types, and generates .orbti/SPECIAL-FLOWS.md.
 </purpose>
 
 <when_to_use>
 - During init when user has specialized skills/commands
-- Ad-hoc via `/orbit:flows` command
+- Ad-hoc via `/orbti:skills` command
 - When adding new skills to an existing project
 - When amending existing SPECIAL-FLOWS.md
 </when_to_use>
@@ -15,8 +15,8 @@ Can be run at any time without affecting REFINE/BUILD/INTEGRATE state.
 </loop_context>
 
 <required_reading>
-@.orbit/PROJECT.md (project context)
-@.orbit/SPECIAL-FLOWS.md (if exists, for amendment)
+@.orbti/PROJECT.md (project context)
+@.orbti/SPECIAL-FLOWS.md (if exists, for amendment)
 </required_reading>
 
 <references>
@@ -27,9 +27,9 @@ Can be run at any time without affecting REFINE/BUILD/INTEGRATE state.
 <process>
 
 <step name="check_existing" priority="first">
-1. Check if .orbit/SPECIAL-FLOWS.md exists:
+1. Check if .orbti/SPECIAL-FLOWS.md exists:
    ```bash
-   ls .orbit/SPECIAL-FLOWS.md 2>/dev/null
+   ls .orbti/SPECIAL-FLOWS.md 2>/dev/null
    ```
 2. If exists:
    ```
@@ -44,9 +44,10 @@ Can be run at any time without affecting REFINE/BUILD/INTEGRATE state.
 </step>
 
 <step name="discover_available_skills">
-1. Scan for available skills:
+1. Scan for available skills (both formats):
    ```bash
    ls ~/.claude/commands/ 2>/dev/null | head -20
+   ls ~/.claude/skills/ 2>/dev/null | head -20
    ```
 
 2. Present categorized list to user:
@@ -161,7 +162,7 @@ Repeat or ask "Add another asset? [y/n]"
 </step>
 
 <step name="generate_output">
-1. Create .orbit/SPECIAL-FLOWS.md using template:
+1. Create .orbti/SPECIAL-FLOWS.md using template:
    - Replace all {{placeholders}} with gathered data
    - Populate tables with skill mappings
    - Set timestamp to current date/time
@@ -170,7 +171,7 @@ Repeat or ask "Add another asset? [y/n]"
    ```markdown
    ## Specialized Flows
 
-   See: .orbit/SPECIAL-FLOWS.md
+   See: .orbti/SPECIAL-FLOWS.md
 
    Quick Reference:
    - /skill1 → Work type 1
@@ -183,7 +184,7 @@ Repeat or ask "Add another asset? [y/n]"
    SPECIAL-FLOWS CONFIGURED
    ════════════════════════════════════════
 
-   Created: .orbit/SPECIAL-FLOWS.md
+   Created: .orbti/SPECIAL-FLOWS.md
 
    Skills configured:
    - /skill1 (required) → Work type 1
@@ -194,7 +195,7 @@ Repeat or ask "Add another asset? [y/n]"
 
    ────────────────────────────────────────
    Verification will occur during INTEGRATE.
-   Run /orbit:flows audit to check current phase.
+   Run /orbti:skills audit to check current phase.
    ────────────────────────────────────────
    ```
 </step>
@@ -215,8 +216,8 @@ Quick add a single skill without full configuration:
 <subcommand name="audit">
 Check current phase against declared flows:
 
-1. Read .orbit/SPECIAL-FLOWS.md
-2. Read .orbit/STATE.md for current phase
+1. Read .orbti/SPECIAL-FLOWS.md
+2. Read .orbti/STATE.md for current phase
 3. Check ROADMAP.md for phase skill requirements
 4. Display:
    ```
@@ -233,7 +234,7 @@ Check current phase against declared flows:
 <subcommand name="list">
 Display current configuration:
 
-1. Read .orbit/SPECIAL-FLOWS.md
+1. Read .orbti/SPECIAL-FLOWS.md
 2. Display formatted summary:
    ```
    SPECIAL-FLOWS CONFIGURATION
@@ -250,15 +251,15 @@ Display current configuration:
 </subcommand>
 
 <output>
-- `.orbit/SPECIAL-FLOWS.md` created or updated
-- `.orbit/PROJECT.md` updated with quick reference
+- `.orbti/SPECIAL-FLOWS.md` created or updated
+- `.orbti/PROJECT.md` updated with quick reference
 - User informed of configuration
 </output>
 
 <error_handling>
-**No .claude/commands/ directory:**
+**No skills found:**
 ```
-No skills directory found at ~/.claude/commands/
+No skills found at ~/.claude/commands/ or ~/.claude/skills/
 Add skills to your Claude Code configuration first.
 
 You can still manually specify skill names.
@@ -271,10 +272,10 @@ Enter skill names (comma-separated) or "skip":
 - Add new entries from this session
 - Update timestamp
 
-**No .orbit/ directory:**
+**No .orbti/ directory:**
 ```
-ORBIT not initialized in this project.
-Run /orbit:init first, or create .orbit/ manually.
+ORBTI not initialized in this project.
+Run /orbti:init first, or create .orbti/ manually.
 ```
 
 **User provides invalid skill name:**

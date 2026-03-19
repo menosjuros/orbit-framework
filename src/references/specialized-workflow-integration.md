@@ -2,7 +2,7 @@
 
 ## Purpose
 
-SPECIAL-FLOWS enables explicit tracking of specialized skills, commands, and workflows within ORBIT governance. Instead of ad-hoc skill invocation, projects declare which skills apply, when they're required, and INTEGRATE verifies they were actually used.
+SKILLS.md enables explicit tracking of specialized skills, commands, and workflows within ORBTI governance. Instead of ad-hoc skill invocation, projects declare which skills apply, when they're required, and INTEGRATE verifies they were actually used.
 
 **Core principle:** If a skill is important enough to use, it's important enough to track.
 
@@ -16,10 +16,10 @@ Users build specialized skills for their work (e.g., `/revops-expert` for persua
 - Knowledge about "which skills for which work" lives only in human memory
 
 ### The Solution
-Layered reinforcement through the ORBIT loop:
+Layered reinforcement through the ORBTI loop:
 
 ```
-SPECIAL-FLOWS.md   →  "This project uses X, Y, Z skills"
+SKILLS.md          →  "This project uses X, Y, Z skills"
        ↓
 ROADMAP.md         →  "Project 2 requires X skill"
        ↓
@@ -30,7 +30,7 @@ INTEGRATE          →  "Was skill invoked? Gap noted if not"
 
 ## Skill Flow
 
-### 1. Declaration (SPECIAL-FLOWS.md)
+### 1. Declaration (SKILLS.md)
 At project setup, declare which skills apply:
 
 ```markdown
@@ -86,7 +86,7 @@ Gaps are documented in STATE.md Deviations, not blocked.
 
 ### Manual During INTEGRATE (Not Hook-Based)
 Skill usage is verified manually during INTEGRATE phase:
-1. Read SPECIAL-FLOWS.md for declared skills
+1. Read SKILLS.md for declared skills
 2. Review conversation/session for invocations
 3. Mark each required skill as invoked or gap
 4. Document gaps in STATE.md Deviations
@@ -105,7 +105,7 @@ Gaps generate warnings, not blocking errors:
 ### Example 1: Client Website Project
 
 ```markdown
-# Specialized Flows
+# Skills
 
 ## Project-Level Dependencies
 
@@ -132,7 +132,7 @@ Gaps generate warnings, not blocking errors:
 ### Example 2: Technical Project
 
 ```markdown
-# Specialized Flows
+# Skills
 
 ## Project-Level Dependencies
 
@@ -145,7 +145,7 @@ Gaps generate warnings, not blocking errors:
 ## Evolution and Improvement
 
 ### Pattern Recognition
-Over time, SPECIAL-FLOWS reveals patterns:
+Over time, SKILLS.md reveals patterns:
 - Which skills are consistently used
 - Which are often skipped (maybe not required?)
 - New skills that should be added
@@ -153,20 +153,20 @@ Over time, SPECIAL-FLOWS reveals patterns:
 ### Updating Patterns
 When intentional deviation becomes the norm:
 1. Note deviation in INTEGRATE
-2. Consider updating SPECIAL-FLOWS.md
+2. Consider updating SKILLS.md
 3. Log decision if significant change
 
 ## Integration Points
 
 ### With Init
-During `/orbit:init`, optionally configure specialized flows:
+During `/orbti:init`, optionally configure skills:
 - "Do you have specialized skills for this project?"
 - If yes, route to configuration workflow
-- If no, skip (can add later via `/orbit:flows`)
+- If no, skip (can add later via `/orbti:skills`)
 
 ### With INTEGRATE
 During INTEGRATE, audit skill usage:
-- Check SPECIAL-FLOWS.md for declared skills
+- Check SKILLS.md for declared skills
 - Verify invocations in session
 - Document gaps in STATE.md Deviations
 
@@ -174,9 +174,9 @@ During INTEGRATE, audit skill usage:
 Quick reference in PROJECT.md:
 
 ```markdown
-## Specialized Flows
+## Skills
 
-See: .orbit/SPECIAL-FLOWS.md
+See: .orbti/SKILLS.md
 
 Quick Reference:
 - /revops-expert → Persuasion copy, offers, CTAs

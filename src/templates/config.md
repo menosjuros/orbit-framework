@@ -1,8 +1,8 @@
 # Project Config Template
 
-Template for `.orbit/config.md` - project-specific configuration and integrations.
+Template for `.orbti/config.md` - project-specific configuration and integrations.
 
-**Purpose:** Store project settings and optional integration flags. Allows ORBIT to adapt behavior based on available tools.
+**Purpose:** Store project settings and optional integration flags. Allows ORBTI to adapt behavior based on available tools.
 
 ---
 
@@ -24,7 +24,15 @@ project:
 
 ## Integrations
 
-Optional integrations that enhance ORBIT functionality.
+Optional integrations that enhance ORBTI functionality.
+
+### E2E Testing (Playwright)
+
+```yaml
+e2e:
+  enabled: false
+  base_url: http://localhost:3000
+```
 
 ### SonarQube
 
@@ -38,7 +46,7 @@ sonarqube:
 ```
 
 **When enabled:**
-- `/orbit:quality-gate` runs scans and updates CONCERNS.md
+- `/orbti:quality-gate` runs scans and updates CONCERNS.md
 - Quality metrics inform planning decisions
 - Issues feed into tech debt tracking
 
@@ -46,6 +54,27 @@ sonarqube:
 - SonarQube server running (local or cloud)
 - `sonar-project.properties` in project root
 - SonarQube MCP server configured
+
+### E2E Testing (Playwright)
+
+Browser-based end-to-end testing against acceptance criteria.
+
+```yaml
+e2e:
+  enabled: false
+  base_url: http://localhost:3000   # App URL for Playwright to navigate
+```
+
+**When enabled:**
+- BUILD finalize auto-runs Playwright for ALL ACs (no `--e2e` flag needed)
+- `checkpoint:human-verify` executes automatically — Playwright navigates, interacts, screenshots
+- Human verification still runs after E2E, focused on UX/visual judgment only
+- E2E failures are warnings (not blockers) — flakiness is real
+
+**Requirements:**
+- Playwright installed: `npx playwright --version`
+- App must be running at `base_url` before BUILD starts
+- If app is not running, BUILD presents `checkpoint:human-action` to start it
 
 ### Future Integrations
 
@@ -63,7 +92,7 @@ Reserved for future use:
 
 ## Models
 
-Model routing for ORBIT phases. See `~/.claude/orbit-framework/references/model-routing.md` for defaults.
+Model routing for ORBTI phases. See `~/.claude/orbti-framework/references/model-routing.md` for defaults.
 
 ```yaml
 models:
@@ -73,7 +102,7 @@ models:
 
 ## Preferences
 
-Optional user preferences for ORBIT behavior.
+Optional user preferences for ORBTI behavior.
 
 ```yaml
 preferences:
@@ -146,7 +175,7 @@ preferences:
 - Project identification (name, version)
 - Integration toggles (enabled/disabled flags)
 - Integration-specific settings (project keys, URLs)
-- User preferences for ORBIT behavior
+- User preferences for ORBTI behavior
 
 **What does NOT belong here:**
 - Sensitive credentials (use environment variables)
@@ -155,9 +184,9 @@ preferences:
 - Roadmap information (that's ROADMAP.md)
 
 **When to create config.md:**
-- During `/orbit:init` if user enables integrations
+- During `/orbti:init` if user enables integrations
 - Manually when adding integrations later
-- Not required for basic ORBIT usage
+- Not required for basic ORBTI usage
 
 **Git behavior:**
 - Can be committed (no secrets)
