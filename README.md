@@ -146,8 +146,8 @@ como?   →  /orbti:cocreate "topic"     # Claude researches, you decide — com
 The default loop starts at refine. Observe and cocreate are optional — use them when scope or approach is unclear.
 
 ```
-observe → cocreate → assumptions → refine → build → test → integrate
- o quê?    como?       validar      plano   executa  verifica  fecha
+observe → (cocreate → assumptions) → refine → build → test → integrate
+ o quê?      como?       validar      plano   executa  verifica  fecha
 ```
 
 ```
