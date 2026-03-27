@@ -412,4 +412,11 @@ If a task would modify a protected file, STOP. Do not rationalize violations.
 
 **Proceeding past checkpoints:**
 Checkpoints are blocking. Do not continue without user response.
+
+**Creating a new REFINE after BUILD without INTEGRATE:**
+After BUILD completes, the ONLY valid next steps are TEST or INTEGRATE.
+Do NOT create a new REFINE.md while INTEGRATE ○ is open.
+If the user asks to create another refine after BUILD, respond:
+"Loop not closed — run /orbti:integrate [refine-path] first."
+No exceptions.
 </anti_patterns>

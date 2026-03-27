@@ -31,12 +31,40 @@ Next project: BUILD (after refine approval)
 <process>
 
 <step name="validate_preconditions" priority="first">
-1. Read STATE.md to confirm:
-   - Loop position is ready for REFINE (prior INTEGRATE complete or first refine)
-   - No blockers preventing planning
-2. If STATE.md shows mid-loop (BUILD or INTEGRATE incomplete):
-   - Warn user: "Previous loop not closed. Complete INTEGRATE first or reset."
-   - Do not proceed until resolved
+**HARD BLOCK — run before anything else. Do not skip under any circumstances.**
+
+1. Read STATE.md
+2. Check loop position:
+
+   **If loop shows BUILD ✓ and INTEGRATE ○ (open loop):**
+   ```
+   ⛔ BLOCKED: Loop not closed
+   ════════════════════════════════════════
+   BUILD is complete but INTEGRATE has not run.
+   You cannot create a new REFINE until the current loop is closed.
+
+   Required next step:
+   ▶ /orbti:integrate [current-refine-path]
+
+   Do NOT proceed with REFINE until integrate is done.
+   ════════════════════════════════════════
+   ```
+   **Stop. Do not create REFINE.md. Do not continue. Period.**
+
+   **If loop shows REFINE ✓ and BUILD ○ (refine not yet built):**
+   ```
+   ⛔ BLOCKED: Existing refine pending
+   ════════════════════════════════════════
+   A REFINE already exists and has not been built yet.
+   Build the existing refine before creating a new one.
+
+   Required next step:
+   ▶ /orbti:build [existing-refine-path]
+   ════════════════════════════════════════
+   ```
+   **Stop. Do not create a second REFINE.md.**
+
+3. Only proceed if loop position is INTEGRATE ✓ (prior loop closed) or no prior loop exists (first refine).
 </step>
 
 <step name="identify_phase">
