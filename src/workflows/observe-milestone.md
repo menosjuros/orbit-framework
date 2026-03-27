@@ -123,7 +123,7 @@ Confirm with user before proceeding.
 </step>
 
 <step name="write_context">
-Create `.orbti/projects/{name}/MILESTONE-CONTEXT.md`:
+Create `.orbti/context/MILESTONE-CONTEXT.md`:
 
 ```markdown
 # Milestone Context
@@ -163,9 +163,10 @@ Create `.orbti/projects/{name}/MILESTONE-CONTEXT.md`:
 
 Display:
 ```
-Context saved to .orbti/projects/{name}/MILESTONE-CONTEXT.md
+Context saved to .orbti/context/MILESTONE-CONTEXT.md
 
 This file persists across /clear so you can take a break if needed.
+/orbti:milestone will pick it up automatically.
 ```
 </step>
 
@@ -197,7 +198,7 @@ Type "yes" to proceed, or continue discussing.
 </process>
 
 <output>
-- .orbti/projects/{name}/MILESTONE-CONTEXT.md created (handoff file)
+- .orbti/context/MILESTONE-CONTEXT.md created (handoff file)
 - Features, scope, and projects articulated
 - Ready for /orbti:milestone to consume
 </output>
@@ -226,7 +227,7 @@ DO: Confirm the synthesis makes sense before writing.
 
 **Not persisting context:**
 DON'T: End discussion without writing MILESTONE-CONTEXT.md
-DO: Always write the file to the project directory so /clear doesn't lose progress.
+DO: Always write to .orbti/context/ — the milestone doesn't exist yet at this point.
 </anti_patterns>
 
 <error_handling>
